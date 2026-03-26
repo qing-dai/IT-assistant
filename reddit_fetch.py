@@ -2,7 +2,7 @@ import requests
 from datetime import datetime, timezone
 
 
-def fetch_reddit_news(subreddit="sysadmin", limit=20):
+def fetch_reddit_news(subreddit="sysadmin", limit=10):
     headers = {"User-Agent": "Reddit IT News Fetcher"}
     url = f"https://www.reddit.com/r/{subreddit}/new.json?limit={limit}"
     response = requests.get(url, headers=headers)
@@ -16,7 +16,7 @@ def fetch_reddit_news(subreddit="sysadmin", limit=20):
         # 1. Map to Nexthink Schema
         # 2. convert Unix timestamp to ISO 8601 (RFC 3339)
         published_at = datetime.fromtimestamp(
-            p_data["created_utc"], tz=timezone.utc).isoformat()
+            p_data["created_utc"], tz=timezone.utc).isoformat().replace("+00:00", "Z")
 
         item = {
             "id": p_data["name"],
