@@ -2,17 +2,12 @@ from datetime import datetime, timezone
 
 from config import (
     HARD_KEEP_BOOST,
-    KEEP_THRESHOLD,
-    LEXICAL_KEYWORDS,
-    SEVERITY_TERMS,
-    TITLE_KEEP_BOOST,
-    VENDOR_TERMS,
     ScoringWeights,
 )
 from embeddings import EmbeddingService
 from models import NewsEntry, ScoredNewsEntry
-from preprocess import build_embedding_text, build_rule_text, build_title_text, normalize_text
-from rules import matches_keep_rule, matches_keep_rule_in_title
+from preprocess import build_embedding_text, build_rule_text
+from rules import matches_keep_rule
 
 
 def compute_freshness_score(published_at: datetime, now: datetime) -> float:

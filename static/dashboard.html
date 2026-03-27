@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT Newsfeed Triage</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #f1f5f9;
+      --surface:      #ffffff;
+      --border:       #e2e8f0;
+      --text:         #0f172a;
+      --text-muted:   #64748b;
+      --col-security: #ef4444;
+      --col-outage:   #f97316;
+      --col-bug:      #eab308;
+      --col-advisory: #3b82f6;
+      --col-unknown:  #6b7280;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── Header ──────────────────────────────────────────── */
+    .header {
+      background: #0f172a;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.35);
+    }
+    .header-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.02em; }
+    .header-sub   { font-size: 0.72rem; color: #64748b; margin-top: 2px; }
+    .header-right { display: flex; align-items: center; gap: 0.875rem; font-size: 0.8rem; color: #94a3b8; }
+
+    .live-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #22c55e; display: inline-block;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.85)} }
+
+    .refresh-btn {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #e2e8f0;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.78rem;
+      transition: background .15s;
+    }
+    .refresh-btn:hover { background: #334155; }
+
+    /* ── Stats bar ───────────────────────────────────────── */
+    .stats-bar {
+      background: #1e293b;
+      border-top: 1px solid #1e293b;
+      padding: 0.45rem 2rem;
+      display: flex;
+      gap: 1.75rem;
+      align-items: center;
+      font-size: 0.75rem;
+      color: #94a3b8;
+    }
+    .stat-item  { display: flex; align-items: center; gap: 0.35rem; }
+    .stat-dot   { width: 9px; height: 9px; border-radius: 2px; flex-shrink: 0; }
+    .stat-count { font-weight: 700; color: #e2e8f0; margin-left: 2px; }
+    .stat-total { margin-left: auto; font-weight: 600; color: #e2e8f0; }
+
+    /* ── Main grid ───────────────────────────────────────── */
+    .main { padding: 1.5rem 2rem 3rem; max-width: 1440px; margin: 0 auto; }
+    .section-heading {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: var(--text-muted);
+      margin-bottom: 0.875rem;
+      min-height: 1em;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(370px, 1fr));
+      gap: 1rem;
+    }
+
+    /* ── Card ────────────────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--col-unknown);
+      border-radius: 10px;
+      padding: 1rem 1.125rem 0.875rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      transition: box-shadow .15s, transform .15s;
+    }
+    .card:hover {
+      box-shadow: 0 6px 24px rgba(0,0,0,0.09);
+      transform: translateY(-1px);
+    }
+    .card.security_incident { border-left-color: var(--col-security); }
+    .card.service_outage    { border-left-color: var(--col-outage);   }
+    .card.major_bug_patch   { border-left-color: var(--col-bug);      }
+    .card.vendor_advisory   { border-left-color: var(--col-advisory); }
+
+    /* ── Card header ─────────────────────────────────────── */
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+    .badges { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+
+    .badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 0.18rem 0.48rem;
+      border-radius: 100px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      white-space: nowrap;
+    }
+    /* category badges */
+    .b-security { background: #fee2e2; color: #b91c1c; }
+    .b-outage   { background: #ffedd5; color: #c2410c; }
+    .b-bug      { background: #fef9c3; color: #92400e; }
+    .b-advisory { background: #dbeafe; color: #1d4ed8; }
+    .b-unknown  { background: #f1f5f9; color: #475569; }
+    /* source badges */
+    .b-reddit   { background: #ff4500; color: #fff; }
+    .b-ars      { background: #cc0000; color: #fff; }
+    .b-mock     { background: #7c3aed; color: #fff; }
+    .b-source   { background: #e2e8f0; color: #475569; }
+    /* decision badges */
+    .b-auto_keep    { background: #dcfce7; color: #15803d; }
+    .b-llm_judge    { background: #f3e8ff; color: #7e22ce; }
+    .b-auto_discard { background: #fee2e2; color: #b91c1c; }
+
+    .card-time {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* ── Card body ───────────────────────────────────────── */
+    .card-title {
+      font-size: 0.9rem;
+      font-weight: 650;
+      line-height: 1.45;
+      color: var(--text);
+    }
+    .card-body {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* ── Score section ───────────────────────────────────── */
+    .scores {
+      border-top: 1px solid var(--border);
+      padding-top: 0.65rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .score-row {
+      display: grid;
+      grid-template-columns: 88px 1fr 34px;
+      align-items: center;
+      gap: 0.45rem;
+    }
+    .score-label {
+      font-size: 0.67rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .score-bar-bg {
+      height: 5px;
+      background: #f1f5f9;
+      border-radius: 100px;
+      overflow: hidden;
+    }
+    .score-bar-fill {
+      height: 100%;
+      border-radius: 100px;
+      transition: width .4s ease;
+    }
+    .score-val {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--text);
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+    .bar-rank     { background: linear-gradient(90deg, #6366f1, #a78bfa); }
+    .bar-semantic { background: linear-gradient(90deg, #0ea5e9, #38bdf8); }
+    .bar-lexical  { background: linear-gradient(90deg, #10b981, #34d399); }
+    .bar-fresh    { background: linear-gradient(90deg, #f59e0b, #fcd34d); }
+
+    /* ── LLM reason ──────────────────────────────────────── */
+    .llm-reason {
+      font-size: 0.72rem;
+      color: #7e22ce;
+      background: #faf5ff;
+      border: 1px solid #e9d5ff;
+      border-radius: 6px;
+      padding: 0.38rem 0.6rem;
+      font-style: italic;
+      line-height: 1.45;
+    }
+    .llm-reason::before { content: 'AI: '; font-weight: 700; font-style: normal; }
+
+    /* ── States ──────────────────────────────────────────── */
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--text-muted);
+    }
+    .empty-state h2 { font-size: 1.15rem; margin-bottom: 0.4rem; color: var(--text); }
+    .loading {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 5rem;
+    }
+    .spinner {
+      width: 34px; height: 34px;
+      border: 3px solid #e2e8f0;
+      border-top-color: #6366f1;
+      border-radius: 50%;
+      animation: spin .75s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Responsive ──────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .header, .stats-bar, .main { padding-left: 1rem; padding-right: 1rem; }
+      .grid { grid-template-columns: 1fr; }
+      .header-right > span:not(.live-dot):not(:last-child) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div>
+      <div class="header-title">IT Newsfeed Triage</div>
+      <div class="header-sub">Real-time IT intelligence for managers</div>
+    </div>
+    <div class="header-right">
+      <span class="live-dot" title="Live"></span>
+      <span id="last-updated">Loading…</span>
+      <span>Refresh in <span id="countdown" style="font-variant-numeric:tabular-nums">30</span>s</span>
+      <button class="refresh-btn" onclick="doRefresh()">&#8635; Refresh</button>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-item">
+      <span class="stat-dot" style="background:var(--col-security)"></span>Security
+      <span class="stat-count" id="cnt-security">—</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-dot" style="background:var(--col-outage)"></span>Outage
+      <span class="stat-count" id="cnt-outage">—</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-dot" style="background:var(--col-bug)"></span>Bug/Patch
+      <span class="stat-count" id="cnt-bug">—</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-dot" style="background:var(--col-advisory)"></span>Advisory
+      <span class="stat-count" id="cnt-advisory">—</span>
+    </div>
+    <span class="stat-total">Total kept: <span id="cnt-total">—</span></span>
+  </div>
+
+  <div class="main">
+    <div class="section-heading" id="feed-heading"></div>
+    <div id="grid" class="grid">
+      <div class="loading"><div class="spinner"></div></div>
+    </div>
+  </div>
+
+  <script>
+    // ── Constants ────────────────────────────────────────────────────────
+    const REFRESH_INTERVAL = 30; // seconds
+
+    const CAT_CFG = {
+      security_incident: { label: 'Security', badge: 'b-security', card: 'security_incident' },
+      service_outage:    { label: 'Outage',   badge: 'b-outage',   card: 'service_outage'    },
+      major_bug_patch:   { label: 'Bug/Patch',badge: 'b-bug',      card: 'major_bug_patch'   },
+      vendor_advisory:   { label: 'Advisory', badge: 'b-advisory', card: 'vendor_advisory'   },
+    };
+
+    const SOURCE_BADGE = {
+      'reddit':       'b-reddit',
+      'ars-technica': 'b-ars',
+      'mock':         'b-mock',
+    };
+
+    // ── Utils ────────────────────────────────────────────────────────────
+    function esc(str) {
+      if (str == null) return '';
+      return String(str)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function timeAgo(isoStr) {
+      if (!isoStr) return '';
+      // SQLite stores without 'Z'; force UTC interpretation
+      const d = new Date(isoStr.includes('Z') || isoStr.includes('+') ? isoStr : isoStr + 'Z');
+      if (isNaN(d)) return isoStr;
+      const diff = Math.floor((Date.now() - d) / 1000);
+      if (diff <    60) return diff + 's ago';
+      if (diff <  3600) return Math.floor(diff / 60) + 'm ago';
+      if (diff < 86400) return Math.floor(diff / 3600) + 'h ago';
+      return Math.floor(diff / 86400) + 'd ago';
+    }
+
+    // ── Score bar ────────────────────────────────────────────────────────
+    function scoreBar(label, value, barClass) {
+      const pct = Math.min(100, Math.round((value || 0) * 100));
+      return `
+        <div class="score-row">
+          <span class="score-label">${esc(label)}</span>
+          <div class="score-bar-bg">
+            <div class="score-bar-fill ${barClass}" style="width:${pct}%"></div>
+          </div>
+          <span class="score-val">${(value || 0).toFixed(2)}</span>
+        </div>`;
+    }
+
+    // ── Card builder ─────────────────────────────────────────────────────
+    function buildCard(item) {
+      const cat    = CAT_CFG[item.predicted_category]
+                     || { label: item.predicted_category || 'Other', badge: 'b-unknown', card: '' };
+      const srcCls = SOURCE_BADGE[item.source] || 'b-source';
+      const decCls = item.decision_source ? 'b-' + item.decision_source : '';
+      const decLbl = item.decision_source ? item.decision_source.replace(/_/g, ' ') : '';
+
+      return `
+        <div class="card ${cat.card}">
+
+          <div class="card-header">
+            <div class="badges">
+              <span class="badge ${cat.badge}">${esc(cat.label)}</span>
+              <span class="badge ${srcCls}">${esc(item.source)}</span>
+              ${decCls ? `<span class="badge ${decCls}">${esc(decLbl)}</span>` : ''}
+            </div>
+            <span class="card-time">${esc(timeAgo(item.published_at))}</span>
+          </div>
+
+          <div class="card-title">${esc(item.title)}</div>
+
+          ${item.body ? `<div class="card-body">${esc(item.body)}</div>` : ''}
+
+          <div class="scores">
+            ${scoreBar('Rank Score', item.rank_score,      'bar-rank')}
+            ${scoreBar('Semantic',   item.semantic_score,  'bar-semantic')}
+            ${scoreBar('Lexical',    item.lexical_score,   'bar-lexical')}
+            ${scoreBar('Freshness',  item.freshness_score, 'bar-fresh')}
+          </div>
+
+          ${item.llm_reason
+            ? `<div class="llm-reason">${esc(item.llm_reason)}</div>`
+            : ''}
+
+        </div>`;
+    }
+
+    // ── Stats bar ────────────────────────────────────────────────────────
+    function updateStats(items) {
+      const c = { security_incident: 0, service_outage: 0, major_bug_patch: 0, vendor_advisory: 0 };
+      items.forEach(item => {
+        if (c[item.predicted_category] !== undefined) c[item.predicted_category]++;
+      });
+      document.getElementById('cnt-security').textContent = c.security_incident;
+      document.getElementById('cnt-outage').textContent   = c.service_outage;
+      document.getElementById('cnt-bug').textContent      = c.major_bug_patch;
+      document.getElementById('cnt-advisory').textContent = c.vendor_advisory;
+      document.getElementById('cnt-total').textContent    = items.length;
+    }
+
+    // ── Fetch + render ───────────────────────────────────────────────────
+    async function doRefresh() {
+      resetCountdown();
+      const grid = document.getElementById('grid');
+      try {
+        const res = await fetch('/retrieve');
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const items = await res.json();
+
+        document.getElementById('last-updated').textContent =
+          'Updated ' + new Date().toLocaleTimeString();
+        document.getElementById('feed-heading').textContent = items.length
+          ? `${items.length} article${items.length !== 1 ? 's' : ''} — ranked by importance × recency`
+          : '';
+
+        updateStats(items);
+
+        grid.innerHTML = items.length
+          ? items.map(buildCard).join('')
+          : `<div class="empty-state">
+               <h2>No articles yet</h2>
+               <p>Waiting for news via /ingest or the background fetch.</p>
+             </div>`;
+
+      } catch (err) {
+        grid.innerHTML = `<div class="empty-state">
+          <h2>Could not load feed</h2>
+          <p>${esc(err.message)}</p>
+        </div>`;
+      }
+    }
+
+    // ── Countdown ────────────────────────────────────────────────────────
+    let _remaining = REFRESH_INTERVAL;
+    let _timer;
+
+    function resetCountdown() {
+      _remaining = REFRESH_INTERVAL;
+      document.getElementById('countdown').textContent = _remaining;
+    }
+
+    function startCountdown() {
+      clearInterval(_timer);
+      _timer = setInterval(() => {
+        _remaining--;
+        document.getElementById('countdown').textContent = _remaining;
+        if (_remaining <= 0) doRefresh();
+      }, 1000);
+    }
+
+    // ── Boot ─────────────────────────────────────────────────────────────
+    doRefresh();
+    startCountdown();
+  </script>
+</body>
+</html>

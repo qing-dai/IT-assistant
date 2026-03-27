@@ -1,6 +1,6 @@
 import re
 
-from config import MAX_BODY_CHARS_EMBEDDING, MAX_BODY_CHARS_LEXICAL
+
 from models import NewsEntry
 
 
@@ -12,7 +12,7 @@ def normalize_text(text: str) -> str:
 
 def build_rule_text(article: NewsEntry) -> str:
     title = (article.title or "").strip()
-    body = (article.body or "").strip()[:MAX_BODY_CHARS_LEXICAL]
+    body = (article.body or "").strip()
 
     if title and body:
         return f"{title}. {body}"
@@ -21,7 +21,7 @@ def build_rule_text(article: NewsEntry) -> str:
 
 def build_embedding_text(article: NewsEntry) -> str:
     title = (article.title or "").strip()
-    body = (article.body or "").strip()[:MAX_BODY_CHARS_EMBEDDING]
+    body = (article.body or "").strip()
 
     if title and body:
         return f"{title}. {body}"

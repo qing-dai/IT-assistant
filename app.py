@@ -1,4 +1,3 @@
-from preprocess import build_rule_text
 from scorer import score_article
 from ranking import compute_rank_score, rank_articles
 from models import NewsEntry
@@ -41,24 +40,34 @@ class NewsTriageService:
             fused_score = scored.fused_score
 
             if fused_score < 0.45:
+                print(
+                    f"Auto-discarding article '{article.title}' with fused score {fused_score:.3f}")
                 scored.keep = False
                 scored.final_score = fused_score
                 scored.decision_source = "auto_discard"
                 scored.rank_score = 0.0
 
             elif fused_score >= 0.75:
+                print(
+                    f"Auto-keeping article '{article.title}' with fused score {fused_score:.3f}")
                 scored.keep = True
                 scored.final_score = fused_score
                 scored.decision_source = "auto_keep"
                 scored.rank_score = compute_rank_score(scored)
 
             else:
+                print(
+                    f"Sending article '{article.title}' for LLM judgment with fused score {fused_score:.3f}")
+                start_time = datetime.now()
                 llm_result = self.llm_judge.judge(
                     source=article.source,
                     title=article.title,
                     body=article.body or "",
                     fused_score=fused_score,
                 )
+                end_time = datetime.now()
+                print(
+                    f"LLM judgment completed in {(end_time - start_time).total_seconds():.2f} seconds")
 
                 scored.llm_reason = llm_result["reason"]
                 scored.llm_relevance_score = llm_result["relevance_score"]
@@ -100,8 +109,8 @@ if __name__ == "__main__":
     # ]
     init_db()
     print("Fetching news from Reddit...")
-    # raw_articles = fetch_reddit_news(subreddit="sysadmin", limit=200)
-    raw_articles = fetch_ars_news(limit=100)
+    raw_articles = fetch_reddit_news(subreddit="sysadmin", limit=20)
+    # raw_articles = fetch_ars_news(limit=100)
     print(f"Fetched {len(raw_articles)} articles. Processing...")
     sample_articles = [NewsEntry(**item) for item in raw_articles]
     print(f"Processing {len(sample_articles)} articles...")
