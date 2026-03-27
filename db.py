@@ -29,11 +29,14 @@ def init_db():
         final_score REAL NOT NULL,
         lexical_score REAL NOT NULL,
         semantic_score REAL NOT NULL,
-        severity_score REAL NOT NULL,
-        entity_score REAL NOT NULL,
         freshness_score REAL NOT NULL,
         predicted_category TEXT NOT NULL,
-        rank_score REAL NOT NULL
+        rank_score REAL NOT NULL,
+
+        fused_score REAL NOT NULL,
+        decision_source TEXT NOT NULL,
+        llm_reason TEXT,
+        llm_relevance_score REAL NOT NULL
     )
     """)
 
@@ -58,12 +61,14 @@ def insert_triage_result(result, run_id: str, retrieved_at: str):
         final_score,
         lexical_score,
         semantic_score,
-        severity_score,
-        entity_score,
         freshness_score,
         predicted_category,
-        rank_score
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        rank_score,
+        fused_score,
+        decision_source,
+        llm_reason,
+        llm_relevance_score
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     """, (
         run_id,
         result.id,
@@ -76,11 +81,13 @@ def insert_triage_result(result, run_id: str, retrieved_at: str):
         result.final_score,
         result.lexical_score,
         result.semantic_score,
-        result.severity_score,
-        result.entity_score,
         result.freshness_score,
         result.predicted_category,
         result.rank_score,
+        result.fused_score,
+        result.decision_source,
+        result.llm_reason,
+        result.llm_relevance_score,
     ))
 
     conn.commit()

@@ -9,6 +9,7 @@ from datetime import datetime, timezone
 import uuid
 from db import init_db, insert_triage_result
 from bm25_scorer import BatchBM25Scorer
+from llm_judge import LLMJudge
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -17,6 +18,7 @@ load_dotenv()
 class NewsTriageService:
     def __init__(self) -> None:
         self.embedding_service = EmbeddingService()
+        self.llm_judge = LLMJudge()
 
     def process_articles(self, articles: list[NewsEntry], run_id: str) -> list:
         now = datetime.now(timezone.utc)
@@ -36,7 +38,40 @@ class NewsTriageService:
                 now=now,
             )
 
-            scored.rank_score = compute_rank_score(scored)
+            fused_score = scored.fused_score
+
+            if fused_score < 0.45:
+                scored.keep = False
+                scored.final_score = fused_score
+                scored.decision_source = "auto_discard"
+                scored.rank_score = 0.0
+
+            elif fused_score >= 0.75:
+                scored.keep = True
+                scored.final_score = fused_score
+                scored.decision_source = "auto_keep"
+                scored.rank_score = compute_rank_score(scored)
+
+            else:
+                llm_result = self.llm_judge.judge(
+                    source=article.source,
+                    title=article.title,
+                    body=article.body or "",
+                    fused_score=fused_score,
+                )
+
+                scored.llm_reason = llm_result["reason"]
+                scored.llm_relevance_score = llm_result["relevance_score"]
+                scored.final_score = llm_result["normalized_score"]
+                scored.decision_source = "llm_judge"
+
+                if llm_result["keep"] and llm_result["relevance_score"] >= 70:
+                    scored.keep = True
+                    scored.rank_score = compute_rank_score(scored)
+                else:
+                    scored.keep = False
+                    scored.rank_score = 0.0
+
             insert_triage_result(scored, run_id=run_id,
                                  retrieved_at=retrieved_at)
             all_results.append(scored)

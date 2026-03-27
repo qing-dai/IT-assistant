@@ -12,6 +12,8 @@ class ScoringWeights:
 OPENAI_EMBEDDING_MODEL = os.getenv(
     "OPENAI_EMBEDDING_MODEL", "text-embedding-3-small")
 
+BM25_MAX_SCORE = 8.0
+
 KEEP_THRESHOLD = 0.58
 HARD_KEEP_BOOST = 0.15
 

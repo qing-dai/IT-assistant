@@ -1,6 +1,8 @@
 import json
 
 from openai import OpenAI
+from models import LLMJudgeResult
+from pydantic import ValidationError
 
 
 def build_llm_prompt(source: str, title: str, body: str, fused_score: float) -> str:
@@ -40,6 +42,9 @@ Initial hybrid score: {fused_score:.2f}
 """.strip()
 
 
+# TODO add pydantic model for LLM response and validate response format more robustly
+
+
 class LLMJudge:
     def __init__(self, model_name: str = "gpt-5") -> None:
         self.client = OpenAI()
@@ -48,20 +53,56 @@ class LLMJudge:
     def judge(self, source: str, title: str, body: str, fused_score: float) -> dict:
         prompt = build_llm_prompt(source, title, body, fused_score)
 
-        response = self.client.responses.create(
+        response = self.client.chat.completions.create(
             model=self.model_name,
-            input=prompt,
+            messages=[
+                {
+                    "role": "developer",
+                    "content": (
+                        "Return only valid JSON that matches the provided schema. "
+                        "Do not include markdown, comments, or extra text."
+                    ),
+                },
+                {
+                    "role": "user",
+                    "content": prompt,
+                },
+            ],
+            response_format={
+                "type": "json_schema",
+                "json_schema": {
+                    "name": "llm_judge_result",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "keep": {"type": "boolean"},
+                            "relevance_score": {
+                                "type": "integer",
+                                "minimum": 0,
+                                "maximum": 100,
+                            },
+                            "reason": {"type": "string"},
+                        },
+                        "required": ["keep", "relevance_score", "reason"],
+                        "additionalProperties": False,
+                    },
+                },
+            },
         )
 
-        text = response.output_text
-        data = json.loads(text)
+        content = response.choices[0].message.content
+        if not content:
+            raise RuntimeError("LLM judge returned empty content.")
 
-        relevance_score = int(data["relevance_score"])
-        relevance_score = max(0, min(relevance_score, 100))
+        try:
+            data = json.loads(content)
+            validated = LLMJudgeResult.model_validate(data)
+        except (json.JSONDecodeError, ValidationError) as e:
+            raise RuntimeError(f"Invalid LLM judge output: {content}") from e
 
         return {
-            "keep": bool(data["keep"]),
-            "relevance_score": relevance_score,
-            "normalized_score": relevance_score / 100.0,
-            "reason": data.get("reason", ""),
+            "keep": validated.keep,
+            "relevance_score": validated.relevance_score,
+            "normalized_score": validated.relevance_score / 100.0,
+            "reason": validated.reason,
         }

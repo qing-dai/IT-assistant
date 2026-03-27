@@ -31,3 +31,9 @@ class ScoredNewsEntry(BaseModel):
     decision_source: str = ""
     llm_reason: str = ""
     llm_relevance_score: float = 0.0
+
+
+class LLMJudgeResult(BaseModel):
+    keep: bool
+    relevance_score: int = Field(ge=0, le=100)
+    reason: str
