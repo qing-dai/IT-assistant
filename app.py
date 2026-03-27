@@ -5,6 +5,7 @@ from ranking import compute_rank_score, rank_articles
 from models import NewsEntry
 from embeddings import EmbeddingService
 from reddit_fetch import fetch_reddit_news
+from ars_it import fetch_ars_news
 from datetime import datetime, timezone
 import uuid
 from db import init_db, insert_triage_result
@@ -73,7 +74,8 @@ if __name__ == "__main__":
     # ]
     init_db()
     print("Fetching news from Reddit...")
-    raw_articles = fetch_reddit_news(limit=200)
+    # raw_articles = fetch_reddit_news(subreddit="sysadmin", limit=200)
+    raw_articles = fetch_ars_news(limit=100)
     print(f"Fetched {len(raw_articles)} articles. Processing...")
     sample_articles = [NewsEntry(**item) for item in raw_articles]
     print(f"Processing {len(sample_articles)} articles...")

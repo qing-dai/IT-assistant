@@ -3,7 +3,7 @@ import requests  # Use requests to handle the header, then pass to feedparser
 from datetime import datetime, timezone
 
 
-def fetch_ars_news():
+def fetch_ars_news(limit: int):
     url = "https://feeds.arstechnica.com/arstechnica/index"
     headers = {'User-Agent': 'NexthinkAssignmentBot/1.0'}
 
@@ -21,10 +21,10 @@ def fetch_ars_news():
             return []
 
         articles = []
-        for entry in feed.entries[:20]:
+        for entry in feed.entries[:limit]:
             # Convert the published_parsed tuple to a UTC ISO string
             published_at = datetime(
-                *entry.published_parsed[:6], tzinfo=timezone.utc).isoformat()
+                *entry.published_parsed[:6], tzinfo=timezone.utc).isoformat().replace("+00:00", "Z")
 
             articles.append({
                 "id": entry.id,

@@ -57,10 +57,8 @@ def score_article(
 ) -> ScoredNewsEntry:
     rule_text = build_rule_text(article)
     embedding_text = build_embedding_text(article)
-    title_text = build_title_text(article)
 
     hard_keep = matches_keep_rule(rule_text)
-    title_keep = matches_keep_rule_in_title(title_text)
 
     lexical_score = compute_lexical_score(rule_text)
     semantic_score, predicted_category = embedding_service.compute_category_score(
@@ -72,16 +70,11 @@ def score_article(
     final_score = (
         weights.lexical * lexical_score
         + weights.semantic * semantic_score
-        + weights.severity * severity_score
-        + weights.entity * entity_score
         + weights.freshness * freshness_score
     )
 
     if hard_keep:
         final_score += HARD_KEEP_BOOST
-
-    if title_keep:
-        final_score += TITLE_KEEP_BOOST
 
     final_score = min(final_score, 1.0)
     keep = final_score >= KEEP_THRESHOLD
