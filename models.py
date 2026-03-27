@@ -23,8 +23,11 @@ class ScoredNewsEntry(BaseModel):
     final_score: float
     lexical_score: float
     semantic_score: float
-    severity_score: float
-    entity_score: float
     freshness_score: float
     predicted_category: str
     rank_score: float = Field(default=0.0)
+
+    fused_score: float = 0.0
+    decision_source: str = ""
+    llm_reason: str = ""
+    llm_relevance_score: float = 0.0

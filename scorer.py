@@ -15,27 +15,6 @@ from preprocess import build_embedding_text, build_rule_text, build_title_text, 
 from rules import matches_keep_rule, matches_keep_rule_in_title
 
 
-def compute_lexical_score(text: str) -> float:
-    normalized = normalize_text(text)
-    raw = sum(weight for keyword, weight in LEXICAL_KEYWORDS.items()
-              if keyword in normalized)
-    return min(raw / 4.0, 1.0)
-
-
-def compute_severity_score(text: str) -> float:
-    normalized = normalize_text(text)
-    raw = sum(weight for term, weight in SEVERITY_TERMS.items()
-              if term in normalized)
-    return min(raw / 2.5, 1.0)
-
-
-def compute_entity_score(text: str) -> float:
-    normalized = normalize_text(text)
-    raw = max((weight for term, weight in VENDOR_TERMS.items()
-              if term in normalized), default=0.0)
-    return raw
-
-
 def compute_freshness_score(published_at: datetime, now: datetime) -> float:
     # Ensure both datetimes are standard timezone-aware for accurate comparison
     if published_at.tzinfo is None:
@@ -51,6 +30,7 @@ def compute_freshness_score(published_at: datetime, now: datetime) -> float:
 
 def score_article(
     article: NewsEntry,
+    lexical_score: float,
     embedding_service: EmbeddingService,
     now: datetime,
     weights: ScoringWeights = ScoringWeights(),
@@ -60,24 +40,20 @@ def score_article(
 
     hard_keep = matches_keep_rule(rule_text)
 
-    lexical_score = compute_lexical_score(rule_text)
     semantic_score, predicted_category = embedding_service.compute_category_score(
         embedding_text)
-    severity_score = compute_severity_score(rule_text)
-    entity_score = compute_entity_score(rule_text)
     freshness_score = compute_freshness_score(article.published_at, now)
 
-    final_score = (
+    fused_score = (
         weights.lexical * lexical_score
         + weights.semantic * semantic_score
         + weights.freshness * freshness_score
     )
 
     if hard_keep:
-        final_score += HARD_KEEP_BOOST
+        fused_score += HARD_KEEP_BOOST
 
-    final_score = min(final_score, 1.0)
-    keep = final_score >= KEEP_THRESHOLD
+    fused_score = min(fused_score, 1.0)
 
     return ScoredNewsEntry(
         id=article.id,
@@ -85,12 +61,14 @@ def score_article(
         title=article.title,
         body=article.body,
         published_at=article.published_at,
-        keep=keep,
-        final_score=final_score,
+        keep=False,
+        final_score=fused_score,
         lexical_score=lexical_score,
         semantic_score=semantic_score,
-        severity_score=severity_score,
-        entity_score=entity_score,
         freshness_score=freshness_score,
         predicted_category=predicted_category,
+        fused_score=fused_score,
+        decision_source="",
+        llm_reason="",
+        llm_relevance_score=0.0,
     )

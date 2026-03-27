@@ -1,10 +1,5 @@
-from config import DISCARD_TERMS, KEEP_TERMS
+from config import KEEP_TERMS
 from preprocess import normalize_text
-
-
-def matches_discard_rule(text: str) -> bool:
-    normalized = normalize_text(text)
-    return any(term in normalized for term in DISCARD_TERMS)
 
 
 def matches_keep_rule(text: str) -> bool:

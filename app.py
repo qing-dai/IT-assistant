@@ -1,6 +1,5 @@
 from preprocess import build_rule_text
 from scorer import score_article
-from rules import matches_discard_rule
 from ranking import compute_rank_score, rank_articles
 from models import NewsEntry
 from embeddings import EmbeddingService
@@ -9,6 +8,7 @@ from ars_it import fetch_ars_news
 from datetime import datetime, timezone
 import uuid
 from db import init_db, insert_triage_result
+from bm25_scorer import BatchBM25Scorer
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -23,24 +23,15 @@ class NewsTriageService:
         retrieved_at = now.isoformat().replace("+00:00", "Z")
         all_results = []
 
-        for article in articles:
-            rule_text = build_rule_text(article)
+        bm25_scorer = BatchBM25Scorer(articles)
+        lexical_scores = bm25_scorer.get_normalized_scores()
 
-            if matches_discard_rule(rule_text):
-                scored = score_article(
-                    article=article,
-                    embedding_service=self.embedding_service,
-                    now=now,
-                )
-                scored.keep = False
-                scored.rank_score = 0.0
-                insert_triage_result(scored, run_id=run_id,
-                                     retrieved_at=retrieved_at)
-                all_results.append(scored)
-                continue
+        for idx, article in enumerate(articles):
+            lexical_score = lexical_scores[idx]
 
             scored = score_article(
                 article=article,
+                lexical_score=lexical_score,
                 embedding_service=self.embedding_service,
                 now=now,
             )
