@@ -256,6 +256,101 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
+    /* ── Tabs ────────────────────────────────────────────── */
+    .tabs {
+      background: #1e293b;
+      padding: 0 2rem;
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid #334155;
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      color: #94a3b8;
+      padding: 0.6rem 1.1rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: color .15s, border-color .15s;
+      letter-spacing: .02em;
+    }
+    .tab-btn:hover { color: #e2e8f0; }
+    .tab-btn.active { color: #e2e8f0; border-bottom-color: #6366f1; }
+
+    /* ── Debug table ─────────────────────────────────────── */
+    .debug-panel { padding: 1.5rem 2rem 3rem; max-width: 1440px; margin: 0 auto; }
+    .debug-legend {
+      display: flex; gap: 1rem; margin-bottom: 1rem; font-size: 0.72rem; flex-wrap: wrap;
+    }
+    .legend-item { display: flex; align-items: center; gap: 0.35rem; font-weight: 600; }
+    .legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
+    .debug-table-wrap { overflow-x: auto; }
+    table.debug-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.74rem;
+    }
+    table.debug-table th {
+      background: #1e293b;
+      color: #94a3b8;
+      text-align: left;
+      padding: 0.5rem 0.65rem;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      white-space: nowrap;
+      position: sticky;
+      top: 0;
+    }
+    table.debug-table td {
+      padding: 0.45rem 0.65rem;
+      border-bottom: 1px solid #f1f5f9;
+      vertical-align: middle;
+      max-width: 300px;
+    }
+    table.debug-table tr.row-keep    { background: #f0fdf4; }
+    table.debug-table tr.row-llm     { background: #faf5ff; }
+    table.debug-table tr.row-discard { background: #fff5f5; }
+    table.debug-table tr:hover td { filter: brightness(0.96); }
+
+    .pill {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 700;
+      padding: 0.15rem 0.42rem;
+      border-radius: 100px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .pill-keep    { background: #dcfce7; color: #15803d; }
+    .pill-llm     { background: #f3e8ff; color: #7e22ce; }
+    .pill-discard { background: #fee2e2; color: #b91c1c; }
+
+    .mini-bar-wrap { display: flex; align-items: center; gap: 0.35rem; min-width: 80px; }
+    .mini-bar-bg { flex: 1; height: 6px; background: #e2e8f0; border-radius: 100px; overflow: hidden; }
+    .mini-bar-fill { height: 100%; border-radius: 100px; }
+    .mini-val { font-size: 0.67rem; font-weight: 700; width: 28px; text-align: right; font-variant-numeric: tabular-nums; }
+
+    .title-cell { line-height: 1.4; }
+    .title-source { font-size: 0.63rem; color: #94a3b8; margin-top: 1px; }
+
+    .threshold-note {
+      font-size: 0.72rem;
+      color: #64748b;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 0.5rem 0.85rem;
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .threshold-note strong { color: #0f172a; }
+
     /* ── Responsive ──────────────────────────────────────── */
     @media (max-width: 640px) {
       .header, .stats-bar, .main { padding-left: 1rem; padding-right: 1rem; }
@@ -279,7 +374,12 @@
     </div>
   </div>
 
-  <div class="stats-bar">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('feed', this)">Live Feed</button>
+    <button class="tab-btn" onclick="switchTab('debug', this)">Scoring Debug</button>
+  </div>
+
+  <div class="stats-bar" id="stats-bar">
     <div class="stat-item">
       <span class="stat-dot" style="background:var(--col-security)"></span>Security
       <span class="stat-count" id="cnt-security">—</span>
@@ -299,10 +399,50 @@
     <span class="stat-total">Total kept: <span id="cnt-total">—</span></span>
   </div>
 
-  <div class="main">
-    <div class="section-heading" id="feed-heading"></div>
-    <div id="grid" class="grid">
-      <div class="loading"><div class="spinner"></div></div>
+  <div id="tab-feed">
+    <div class="main">
+      <div class="section-heading" id="feed-heading"></div>
+      <div id="grid" class="grid">
+        <div class="loading"><div class="spinner"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tab-debug" style="display:none">
+    <div class="debug-panel">
+      <div class="threshold-note">
+        <span>Current thresholds &mdash;</span>
+        <span><strong>Auto-discard:</strong> fused &lt; 0.45</span>
+        <span><strong>LLM zone:</strong> 0.45 &ndash; 0.75</span>
+        <span><strong>Auto-keep:</strong> fused &ge; 0.75</span>
+        <span style="margin-left:auto;color:#94a3b8" id="debug-run-label"></span>
+      </div>
+      <div class="debug-legend">
+        <span class="legend-item"><span class="legend-dot" style="background:#bbf7d0"></span>Auto-keep</span>
+        <span class="legend-item"><span class="legend-dot" style="background:#e9d5ff"></span>LLM judge</span>
+        <span class="legend-item"><span class="legend-dot" style="background:#fecaca"></span>Auto-discard</span>
+      </div>
+      <div class="debug-table-wrap">
+        <table class="debug-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Title / Source</th>
+              <th>Decision</th>
+              <th>Keep</th>
+              <th>Fused</th>
+              <th>Lexical</th>
+              <th>Semantic</th>
+              <th>Freshness</th>
+              <th>LLM Score</th>
+              <th>LLM Reason</th>
+            </tr>
+          </thead>
+          <tbody id="debug-tbody">
+            <tr><td colspan="10" style="text-align:center;padding:2rem;color:#94a3b8">Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
@@ -392,6 +532,76 @@
             : ''}
 
         </div>`;
+    }
+
+    // ── Tab switching ─────────────────────────────────────────────────────
+    let _activeTab = 'feed';
+
+    function switchTab(name, btn) {
+      _activeTab = name;
+      document.getElementById('tab-feed').style.display  = name === 'feed'  ? '' : 'none';
+      document.getElementById('tab-debug').style.display = name === 'debug' ? '' : 'none';
+      document.getElementById('stats-bar').style.display = name === 'feed'  ? '' : 'none';
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      if (name === 'debug') loadDebug();
+    }
+
+    // ── Mini score bar ────────────────────────────────────────────────────
+    function miniBar(value, color) {
+      const pct = Math.min(100, Math.round((value || 0) * 100));
+      return `<div class="mini-bar-wrap">
+        <div class="mini-bar-bg"><div class="mini-bar-fill" style="width:${pct}%;background:${color}"></div></div>
+        <span class="mini-val">${(value || 0).toFixed(2)}</span>
+      </div>`;
+    }
+
+    // ── Debug table ───────────────────────────────────────────────────────
+    async function loadDebug() {
+      const tbody = document.getElementById('debug-tbody');
+      try {
+        const res = await fetch('/debug/scoring');
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const items = await res.json();
+
+        if (!items.length) {
+          tbody.innerHTML = '<tr><td colspan="10" style="text-align:center;padding:2rem;color:#94a3b8">No data yet — run a fetch first.</td></tr>';
+          return;
+        }
+
+        document.getElementById('debug-run-label').textContent =
+          `run: ${items[0].run_id ? items[0].run_id.slice(0, 8) + '…' : '?'}  ·  ${items.length} articles`;
+
+        tbody.innerHTML = items.map((item, i) => {
+          const dec = item.decision_source || '';
+          const rowCls = dec === 'auto_keep' ? 'row-keep' : dec === 'llm_judge' ? 'row-llm' : 'row-discard';
+          const pillCls = dec === 'auto_keep' ? 'pill-keep' : dec === 'llm_judge' ? 'pill-llm' : 'pill-discard';
+          const pillLbl = dec.replace(/_/g, ' ');
+          const keepMark = item.keep ? '✓' : '✗';
+          const keepColor = item.keep ? '#15803d' : '#b91c1c';
+          const llmScore = item.llm_relevance_score > 0
+            ? `<span style="font-weight:700">${item.llm_relevance_score}</span>/100`
+            : '—';
+          return `<tr class="${rowCls}">
+            <td style="color:#94a3b8;font-size:0.65rem">${i + 1}</td>
+            <td><div class="title-cell">
+              <div>${esc(item.title)}</div>
+              ${item.body ? `<div style="font-size:0.68rem;color:#475569;margin-top:2px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${esc(item.body)}</div>` : ''}
+              <div class="title-source">${esc(item.source)} · ${esc(timeAgo(item.published_at))}</div>
+            </div></td>
+            <td><span class="pill ${pillCls}">${esc(pillLbl)}</span></td>
+            <td style="font-weight:700;color:${keepColor};text-align:center">${keepMark}</td>
+            <td>${miniBar(item.fused_score,    '#6366f1')}</td>
+            <td>${miniBar(item.lexical_score,  '#10b981')}</td>
+            <td>${miniBar(item.semantic_score, '#0ea5e9')}</td>
+            <td>${miniBar(item.freshness_score,'#f59e0b')}</td>
+            <td style="text-align:center;white-space:nowrap">${llmScore}</td>
+            <td style="color:#7e22ce;font-size:0.7rem;font-style:italic">${esc(item.llm_reason || '')}</td>
+          </tr>`;
+        }).join('');
+      } catch (err) {
+        tbody.innerHTML = `<tr><td colspan="10" style="text-align:center;padding:2rem;color:#b91c1c">${esc(err.message)}</td></tr>`;
+      }
     }
 
     // ── Stats bar ────────────────────────────────────────────────────────

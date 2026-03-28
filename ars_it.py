@@ -7,6 +7,7 @@ from urllib.parse import urljoin, urldefrag
 import requests
 from bs4 import BeautifulSoup
 
+# TODO: too complicated to scrape, too slow, need to check the logic
 
 BASE_SECTION_URL = "https://arstechnica.com/security/"
 HEADERS = {"User-Agent": "NexthinkAssignmentBot/1.0"}

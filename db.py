@@ -54,6 +54,22 @@ def get_existing_ids() -> set[str]:
     return ids
 
 
+def get_latest_run_items(limit: int = 90) -> list[dict]:
+    """Return the most recently ingested articles (kept + discarded), sorted by fused_score DESC."""
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        SELECT * FROM (
+            SELECT * FROM triage_results ORDER BY id DESC LIMIT ?
+        )
+        ORDER BY fused_score DESC
+    """, (limit,))
+    rows = cursor.fetchall()
+    columns = [desc[0] for desc in cursor.description]
+    conn.close()
+    return [dict(zip(columns, row)) for row in rows]
+
+
 def get_filtered_items() -> list[dict]:
     """Return kept articles, one row per article_id (latest run wins), sorted by rank."""
     conn = get_connection()
