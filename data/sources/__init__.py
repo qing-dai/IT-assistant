@@ -10,7 +10,10 @@ from data.sources.ars_technica import ArsTechnicaSource
 from data.sources.base import NewsSource
 from data.sources.reddit import RedditSource
 
-SOURCES: list[NewsSource] = [
-    RedditSource(subreddit=os.getenv("REDDIT_SUBREDDIT", "sysadmin")),
-    ArsTechnicaSource(),
-]
+_reddit = RedditSource(subreddit=os.getenv("REDDIT_SUBREDDIT", "sysadmin"))
+_reddit.default_limit = int(os.getenv("REDDIT_LIMIT", "25"))
+
+_ars = ArsTechnicaSource()
+_ars.default_limit = int(os.getenv("ARS_LIMIT", "20"))
+
+SOURCES: list[NewsSource] = [_reddit, _ars]

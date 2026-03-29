@@ -12,7 +12,6 @@ import os
 from contextlib import asynccontextmanager
 from pathlib import Path
 
-from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
@@ -23,8 +22,6 @@ from controllers.retrieve import router as retrieve_router
 from data.db import init_db
 from services.background import background_fetch_loop
 from services.ingest_service import IngestService
-
-load_dotenv()
 
 logging.basicConfig(
     level=logging.INFO,

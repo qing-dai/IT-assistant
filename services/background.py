@@ -17,7 +17,6 @@ from services.ingest_service import IngestService
 logger = logging.getLogger(__name__)
 
 FETCH_INTERVAL_SEC = int(os.getenv("FETCH_INTERVAL_MINUTES", "10")) * 60
-FETCH_LIMIT = int(os.getenv("FETCH_LIMIT", "25"))
 
 
 async def run_fetch_cycle(service: IngestService) -> None:
@@ -29,7 +28,7 @@ async def run_fetch_cycle(service: IngestService) -> None:
     for source in SOURCES:
         try:
             items = await loop.run_in_executor(
-                None, lambda s=source: s.fetch(limit=FETCH_LIMIT)
+                None, lambda s=source: s.fetch(limit=s.default_limit)
             )
             logger.info(f"{source.source_id}: fetched {len(items)} items")
             raw_all.extend(items)

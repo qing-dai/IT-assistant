@@ -13,6 +13,9 @@ class NewsSource(ABC):
     #: Unique source identifier used in the NewsEntry.source field.
     source_id: str
 
+    #: Fetch limit for the background loop. Set per-source in data/sources/__init__.py.
+    default_limit: int
+
     @abstractmethod
     def fetch(self, limit: int) -> list[dict]:
         """
