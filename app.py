@@ -2,13 +2,12 @@ from scorer import score_article
 from ranking import compute_rank_score, rank_articles
 from models import NewsEntry
 from embeddings import EmbeddingService
-from reddit_fetch import fetch_reddit_news
-from ars_it import fetch_ars_news
 from datetime import datetime, timezone
 import uuid
 from db import init_db, insert_triage_result
 from bm25_scorer import BatchBM25Scorer
 from llm_judge import LLMJudge
+from config import AUTO_DISCARD_THRESHOLD, AUTO_KEEP_THRESHOLD, LLM_RELEVANCE_MIN
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -39,7 +38,7 @@ class NewsTriageService:
 
             fused_score = scored.fused_score
 
-            if fused_score < 0.45:
+            if fused_score < AUTO_DISCARD_THRESHOLD:
                 print(
                     f"Auto-discarding article '{article.title}' with fused score {fused_score:.3f}")
                 scored.keep = False
@@ -47,7 +46,7 @@ class NewsTriageService:
                 scored.decision_source = "auto_discard"
                 scored.rank_score = 0.0
 
-            elif fused_score >= 0.75:
+            elif fused_score >= AUTO_KEEP_THRESHOLD:
                 print(
                     f"Auto-keeping article '{article.title}' with fused score {fused_score:.3f}")
                 scored.keep = True
@@ -74,7 +73,7 @@ class NewsTriageService:
                 scored.final_score = llm_result["normalized_score"]
                 scored.decision_source = "llm_judge"
 
-                if llm_result["keep"] and llm_result["relevance_score"] >= 70:
+                if llm_result["keep"] and llm_result["relevance_score"] >= LLM_RELEVANCE_MIN:
                     scored.keep = True
                     scored.rank_score = compute_rank_score(scored)
                 else:
@@ -93,33 +92,20 @@ class NewsTriageService:
 
 
 if __name__ == "__main__":
-    # sample_articles = [
-    #     NewsEntry(
-    #         id="1",
-    #         source="reddit",
-    #         title="Microsoft outage affects authentication across multiple tenants",
-    #         body="Users report sign-in failures and service disruption across several enterprise tenants.",
-    #         published_at="2026-03-26T08:00:00Z",
-    #     ),
-    #     NewsEntry(
-    #         id="2",
-    #         source="ars-technica",
-    #         title="Best laptop for college in 2026",
-    #         body="A full buying guide for students looking for a powerful but affordable laptop.",
-    #         published_at="2026-03-25T10:00:00Z",
-    #     ),
-    # ]
+    from sources import SOURCES
+
     init_db()
-    print("Fetching news from Reddit...")
-    raw_articles = fetch_reddit_news(subreddit="sysadmin", limit=20)
-    # raw_articles = fetch_ars_news(limit=100)
-    print(f"Fetched {len(raw_articles)} articles. Processing...")
-    sample_articles = [NewsEntry(**item) for item in raw_articles]
-    print(f"Processing {len(sample_articles)} articles...")
+    raw_articles = []
+    for source in SOURCES:
+        print(f"Fetching from {source.source_id}...")
+        raw_articles.extend(source.fetch(limit=20))
+
+    print(f"Fetched {len(raw_articles)} articles total. Processing...")
+    articles = [NewsEntry(**item) for item in raw_articles]
 
     run_id = str(uuid.uuid4())
     service = NewsTriageService()
-    results = service.process_articles(sample_articles, run_id=run_id)
+    results = service.process_articles(articles, run_id=run_id)
     print(f"Kept {len(results)} articles after triage. Ranked results:")
 
     for item in results:

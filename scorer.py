@@ -6,7 +6,7 @@ from config import (
 )
 from embeddings import EmbeddingService
 from models import NewsEntry, ScoredNewsEntry
-from preprocess import build_embedding_text, build_rule_text
+from preprocess import build_article_text
 from rules import matches_keep_rule
 
 
@@ -30,8 +30,8 @@ def score_article(
     now: datetime,
     weights: ScoringWeights = ScoringWeights(),
 ) -> ScoredNewsEntry:
-    rule_text = build_rule_text(article)
-    embedding_text = build_embedding_text(article)
+    rule_text = build_article_text(article)
+    embedding_text = build_article_text(article)
 
     hard_keep = matches_keep_rule(rule_text)
 

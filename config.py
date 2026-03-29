@@ -17,6 +17,11 @@ BM25_MAX_SCORE = 8.0
 KEEP_THRESHOLD = 0.58
 HARD_KEEP_BOOST = 0.15
 
+# Triage gate thresholds used in NewsTriageService
+AUTO_DISCARD_THRESHOLD = 0.45   # below this → auto-discard (no LLM call)
+AUTO_KEEP_THRESHOLD = 0.75      # at/above this → auto-keep (no LLM call)
+LLM_RELEVANCE_MIN = 70          # minimum LLM relevance_score (0-100) to keep
+
 CATEGORY_PROTOTYPES = {
     "security_incident": (
         "News about critical vulnerabilities, CVEs, ransomware, zero-day exploits, "
