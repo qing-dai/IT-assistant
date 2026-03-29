@@ -1,0 +1,883 @@
+article_id,source,title,body,published_at,should_keep,confidence,annotation_reason
+https://arstechnica.com/security/2025/11/5-plead-guilty-to-laptop-farm-and-id-theft-scheme-to-land-north-koreans-us-it-jobs/,ars-technica,5 plead guilty to laptop farm and ID theft scheme to land North Koreans US IT jobs,Fleets of laptops run from US residences gave appearance workers were in the US.,2025-11-17T22:20:38+00:00,True,92,"The article describes a confirmed, organized North Korean fraudulent IT worker operation using laptop farms and identity theft to infiltrate US companies, which is actionable enterprise security and hiring-risk intelligence."
+https://arstechnica.com/security/2025/11/critics-scoff-after-microsoft-warns-ai-feature-can-infect-machines-and-pilfer-data/,ars-technica,Critics scoff after Microsoft warns AI feature can infect machines and pilfer data,"Integration of Copilot Actions into Windows is off by default, but for how long?",2025-11-19T20:25:46+00:00,False,78,"This appears to be a commentary or critique about a potential risk in a Microsoft AI feature rather than a confirmed incident, official advisory, or broadly impacting operational event."
+https://arstechnica.com/security/2025/11/cryptography-group-cancels-election-results-after-official-loses-secret-key/,ars-technica,Oops. Cryptographers cancel election results after losing decryption key.,"Voting system required three keys. One of them has been ""irretrievably lost.""",2025-11-22T00:16:25+00:00,False,95,"This is a niche incident about a lost decryption key affecting election result handling, not a broader enterprise IT security incident, vendor advisory, outage, or actionable threat pattern relevant to enterprise managers."
+https://arstechnica.com/security/2025/11/researchers-question-anthropic-claim-that-ai-assisted-attack-was-90-autonomous/,ars-technica,Researchers question Anthropic claim that AI-assisted attack was 90% autonomous,The results of AI-assisted hacking aren't as impressive as many might have us believe.,2025-11-14T12:20:48+00:00,False,95,"This is a commentary-style article about claims regarding AI-assisted hacking capability, not a confirmed incident, vendor advisory, outage, or actionable threat intelligence with direct enterprise operational impact."
+https://arstechnica.com/security/2025/11/this-hacker-conference-installed-a-literal-antivirus-monitoring-system/,ars-technica,This hacker conference installed a literal antivirus monitoring system,Organizers had a way for attendees to track CO2 levels throughout the venue—even before they arrived.,2025-11-22T12:00:20+00:00,False,96,"This is a novelty/event-operations story about conference CO2 monitoring, not a confirmed security incident, outage, vendor advisory, or actionable enterprise IT threat intelligence."
+https://arstechnica.com/security/2025/11/thousands-of-hacked-asus-routers-are-under-control-of-suspected-china-state-hackers/,ars-technica,How to know if your Asus router is one of thousands hacked by China-state hackers,"So far, the hackers are laying low, likely for later use.",2025-11-21T22:05:20+00:00,True,95,"This reports a confirmed, named state-backed hacking campaign affecting thousands of Asus routers and provides actionable threat intelligence relevant to enterprise network security teams."
+https://arstechnica.com/security/2025/12/admins-and-defenders-gird-themselves-against-maximum-severity-server-vulnerability/,ars-technica,Admins and defenders gird themselves against maximum-severity server vuln,Open source React executes malicious code with malformed HTML—no authentication needed.,2025-12-03T23:16:03+00:00,True,95,"It reports a maximum-severity server vulnerability enabling unauthenticated remote code execution in a widely used open-source component, which is directly actionable for enterprise IT and security teams."
+https://arstechnica.com/security/2025/12/browser-extensions-with-8-million-users-collect-extended-ai-conversations/,ars-technica,Browser extensions with 8 million users collect extended AI conversations,"The extensions, available for Chromium browsers, harvest full AI conversations over months.",2025-12-17T15:25:25+00:00,True,92,"This reports a confirmed privacy/security issue affecting widely used browser extensions and enterprise AI usage, making it relevant to IT managers and security teams."
+https://arstechnica.com/security/2025/12/fraudulent-gambling-network-may-be-a-nation-state-spying-operation/,ars-technica,Fraudulent gambling network may actually be something more nefarious,"Researchers say there's more to the network, which has operated for 14 years.",2025-12-03T17:23:26+00:00,False,34,"The snippet is too vague and does not confirm a named security incident, active exploitation, vendor advisory, or broad enterprise IT operational impact."
+https://arstechnica.com/security/2025/12/microsoft-will-finally-kill-obsolete-cipher-that-has-wreaked-decades-of-havoc/,ars-technica,Microsoft will finally kill obsolete cipher that has wreaked decades of havoc,The weak RC4 for administrative authentication has been a hacker holy grail for decades.,2025-12-15T21:15:55+00:00,True,92,This reports an official Microsoft deprecation of the obsolete RC4 cipher with clear enterprise security and operational impact for authentication environments.
+https://arstechnica.com/security/2025/12/supply-chains-ai-and-the-cloud-the-biggest-failures-and-one-success-of-2025/,ars-technica,"Supply chains, AI, and the cloud: The biggest failures (and one success) of 2025",The past year has seen plenty of hacks and outages. Here are the ones topping the list.,2025-12-31T13:15:40+00:00,True,84,"This is a roundup of major hacks and outages, which likely summarizes confirmed security incidents and service failures relevant to enterprise IT and security teams."
+https://arstechnica.com/security/2026/01/a-single-click-mounted-a-covert-multistage-attack-against-copilot/,ars-technica,"A single click mounted a covert, multistage attack against Copilot",Exploit exfiltrating data from chat histories worked even after users closed chat windows.,2026-01-14T22:03:11+00:00,True,95,"It describes a confirmed multistage exploit against Microsoft Copilot that covertly exfiltrated chat-history data, making it actionable security news with clear enterprise impact."
+https://arstechnica.com/security/2026/01/chatgpt-falls-to-new-data-pilfering-attack-as-a-vicious-cycle-in-ai-continues/,ars-technica,ChatGPT falls to new data-pilfering attack as a vicious cycle in AI continues,Will LLMs ever be able to stamp out the root cause of these attacks? Possibly not.,2026-01-08T14:00:07+00:00,False,88,"This appears to be a general analysis/opinion piece about AI prompt/data-pilfering attacks rather than a confirmed named incident, vendor advisory, or broadly actionable enterprise IT security event."
+https://arstechnica.com/security/2026/01/county-pays-600000-to-pentesters-it-arrested-for-assessing-courthouse-security/,ars-technica,"County pays $600,000 to pentesters it arrested for assessing courthouse security",Settlement comes more than 6 years after Gary DeMercurio and Justin Wynn's ordeal began.,2026-01-29T18:30:52+00:00,False,94,"This is a legal follow-up about a past pentesting arrest and settlement, not a current security incident, active threat, outage, or operationally actionable enterprise IT advisory."
+https://arstechnica.com/security/2026/01/hacker-who-stole-120000-bitcoins-wants-a-second-chance-and-a-security-job/,ars-technica,"Hacker who stole 120,000 bitcoins wants a second chance—and a security job","Crypto theft was ""the worst thing I had ever done.""",2026-01-22T22:23:15+00:00,False,96,"This is a human-interest/profile story about an individual involved in past cryptocurrency theft, not actionable enterprise IT security news, an active incident, or an operational advisory."
+https://arstechnica.com/security/2026/01/mandiant-releases-rainbow-table-that-cracks-weak-admin-password-in-12-hours/,ars-technica,Mandiant releases rainbow table that cracks weak admin password in 12 hours,Windows laggards still using the vulnerable hashing function: Your days are numbered.,2026-01-16T21:05:37+00:00,True,88,"This reports actionable security research with clear enterprise impact, describing a practical attack against weak Windows admin passwords that affects organizations still using vulnerable hashing."
+https://arstechnica.com/security/2026/01/michigan-man-learns-the-hard-way-that-catch-a-cheater-spyware-apps-arent-legal/,ars-technica,Michigan man learns the hard way that “catch a cheater” spyware apps aren’t legal,"Spying doesn't become legal just because ""cheaters"" are the targets.",2026-01-08T22:02:31+00:00,False,95,"This is a legal/privacy news story about consumer spyware apps and does not report a confirmed enterprise IT security incident, vendor advisory, outage, or broadly actionable enterprise threat intelligence."
+https://arstechnica.com/security/2026/01/millions-of-people-imperiled-through-sign-in-links-sent-by-sms/,ars-technica,Millions of people imperiled through sign-in links sent by SMS,Even well-known services with millions of users are exposing sensitive data.,2026-01-21T23:22:14+00:00,False,88,"The snippet is too vague and lacks a confirmed named incident, vendor advisory, or actionable enterprise IT operational impact beyond a general security concern."
+https://arstechnica.com/security/2026/01/never-before-seen-linux-malware-is-far-more-advanced-than-typical/,ars-technica,Never-before-seen Linux malware is “far more advanced than typical”,VoidLink includes an unusually broad and advanced array of capabilities.,2026-01-13T22:07:21+00:00,True,92,"It reports on a newly identified Linux malware family with advanced capabilities, which is actionable threat intelligence relevant to enterprise IT and security teams."
+https://arstechnica.com/security/2026/01/overrun-with-ai-slop-curl-scraps-bug-bounties-to-ensure-intact-mental-health/,ars-technica,"Overrun with AI slop, cURL scraps bug bounties to ensure “intact mental health”",The onslaught includes LLMs finding bogus vulnerabilities and code that won't compile.,2026-01-22T22:46:30+00:00,False,95,"This is primarily a meta/community article about cURL ending its bug bounty program due to low-quality AI-generated submissions, not a confirmed security incident, active exploitation, or operational advisory with direct enterprise IT impact."
+https://arstechnica.com/security/2026/01/signal-creator-moxie-marlinspike-wants-to-do-for-ai-what-he-did-for-messaging/,ars-technica,Signal creator Moxie Marlinspike wants to do for AI what he did for messaging,"Introducing Confer, an end-to-end AI assistant that just works.",2026-01-13T12:00:36+00:00,False,96,"This is a product/profile piece about an AI assistant launch and does not report a security incident, outage, broken update, vendor advisory, or actionable threat intelligence relevant to enterprise IT operations."
+https://arstechnica.com/security/2026/01/site-catering-to-online-criminals-has-been-seized-by-the-fbi/,ars-technica,Site catering to online criminals has been seized by the FBI,"One of the last holdouts for ransomware discussions, RAMP is taken down.",2026-01-28T22:06:41+00:00,True,96,"This reports a confirmed law-enforcement takedown of RAMP, a known ransomware cybercrime forum, which is directly relevant threat intelligence for enterprise security teams."
+https://arstechnica.com/security/2026/01/unnamed-officials-tell-nyt-precise-cyber-op-took-out-venezuelas-power-grid/,ars-technica,Why I’m withholding certainty that “precise” US cyber-op disrupted Venezuelan electricity,NYT says US hackers were able to turn off power and then quickly turn it back on.,2026-01-15T21:29:58+00:00,False,88,"This is speculative geopolitical reporting about an alleged cyber-operation against Venezuela’s power grid, without a confirmed enterprise IT incident, vendor advisory, or actionable operational guidance for enterprise managers or security teams."
+https://arstechnica.com/security/2026/01/web-portal-leaves-kids-chats-with-ai-toy-open-to-anyone-with-gmail-account/,ars-technica,Web portal leaves kids’ chats with AI toy open to anyone with Gmail account,Just about anyone with a Gmail account could access Bondu chat transcripts.,2026-01-30T17:49:19+00:00,True,88,"The article describes a confirmed access-control/security exposure in a web portal that left chat transcripts accessible to unauthorized users, which is relevant to enterprise security teams as a real incident."
+https://arstechnica.com/security/2026/01/wiper-malware-targeted-poland-energy-grid-but-failed-to-knock-out-electricity/,ars-technica,Poland’s energy grid was targeted by never-before-seen wiper malware,Destructive payload unleashed on tenth anniversary of Russia's attack on Ukraine's grid.,2026-01-24T19:08:06+00:00,True,98,This reports a confirmed destructive malware attack targeting a national energy grid with clear enterprise and critical infrastructure security relevance.
+https://arstechnica.com/security/2026/02/google-is-using-clever-math-to-quantum-proof-https-certificates/,ars-technica,Google quantum-proofs HTTPS by squeezing 15kB of data into 700-byte space,"Merkle Tree Certificate support is already in Chrome. Soon, it will be everywhere.",2026-02-28T01:26:41+00:00,False,78,"This is a technology/deployment article about post-quantum HTTPS efficiency improvements, not a confirmed incident, outage, broken update, or operational advisory with immediate enterprise impact."
+https://arstechnica.com/security/2026/02/malicious-packages-for-dydx-cryptocurrency-exchange-empties-user-wallets/,ars-technica,Malicious packages for dYdX cryptocurrency exchange empties user wallets,Incident is at least the third time the exchange has been targeted by thieves.,2026-02-06T22:16:51+00:00,False,92,"This is a cryptocurrency exchange incident focused on user wallet theft via malicious packages, with no clear broader enterprise IT or security operations impact beyond the crypto ecosystem."
+https://arstechnica.com/security/2026/02/new-airsnitch-attack-breaks-wi-fi-encryption-in-homes-offices-and-enterprises/,ars-technica,"New AirSnitch attack bypasses Wi-Fi encryption in homes, offices, and enterprises",That guest network you set up for your neighbors may not be as secure as you think.,2026-02-26T15:45:18+00:00,True,92,"This reports a named Wi-Fi attack technique that bypasses encryption across home, office, and enterprise networks, making it actionable security intelligence relevant to enterprise IT and security teams."
+https://arstechnica.com/security/2026/02/notepad-updater-was-compromised-for-6-months-in-supply-chain-attack/,ars-technica,Notepad++ users take note: It’s time to check if you’re hacked,Suspected China-state hackers used update infrastructure to deliver backdoored version.,2026-02-02T20:30:56+00:00,True,97,"This reports a suspected supply-chain compromise of Notepad++ update infrastructure delivering a backdoored version, which is actionable security incident information relevant to enterprise IT and security teams."
+https://arstechnica.com/security/2026/02/once-hobbled-lumma-stealer-is-back-with-lures-that-are-hard-to-resist/,ars-technica,Once-hobbled Lumma Stealer is back with lures that are hard to resist,"ClickFix bait, combined with advanced Castleloader malware, is installing Lumma ""at scale.""",2026-02-11T22:11:40+00:00,True,96,"The article describes an active malware campaign installing the Lumma Stealer at scale using ClickFix lures and Castleloader, which is actionable threat intelligence relevant to enterprise security teams."
+https://arstechnica.com/security/2026/02/password-managers-promise-that-they-cant-see-your-vaults-isnt-always-true/,ars-technica,Password managers’ promise that they can’t see your vaults isn’t always true,"Contrary to what password managers say, a server compromise can mean game over.",2026-02-17T20:43:01+00:00,True,88,"The article describes a confirmed security risk pattern affecting password managers where server compromise can expose supposedly inaccessible vault data, which is relevant to enterprise security teams evaluating credential-management products."
+https://arstechnica.com/security/2026/02/russian-state-hackers-exploit-office-vulnerability-to-infect-computers/,ars-technica,Microsoft releases urgent Office patch. Russian-state hackers pounce.,The window to patch vulnerabilities is shrinking rapidly.,2026-02-04T23:08:04+00:00,True,95,"It reports an urgent Microsoft Office patch being actively exploited by Russian state hackers, which is actionable threat intelligence with clear enterprise security impact."
+https://arstechnica.com/security/2026/03/14000-routers-are-infected-by-malware-thats-highly-resistant-to-takedowns/,ars-technica,"14,000 routers are infected by malware that’s highly resistant to takedowns",Most of the devices are made by Asus and are located in the US.,2026-03-11T21:27:16+00:00,True,95,"This reports a confirmed malware campaign infecting 14,000 routers with broad operational and security relevance, making it actionable threat intelligence for enterprise IT and security teams."
+https://arstechnica.com/security/2026/03/after-hack-some-ignition-interlock-users-couldnt-start-their-own-cars/,ars-technica,"After hackers hit an Iowa company, cars around the country failed to start","If you don't calibrate your interlock in time, your vehicle is dead.",2026-03-23T21:10:14+00:00,True,88,"It describes a confirmed cyberattack on an interlock-device provider that caused operational disruption to vehicles nationwide, making it a security incident with broad real-world impact relevant to enterprise security teams."
+https://arstechnica.com/security/2026/03/cisa-adds-3-ios-flaws-to-its-catalog-of-known-exploited-vulnerabilities/,ars-technica,Feds take notice of iOS vulnerabilities exploited under mysterious circumstances,"The long, strange trip of a large assembly of advanced iOS exploits.",2026-03-06T19:41:33+00:00,True,88,"This reports on actively exploited iOS vulnerabilities and federal attention to a confirmed exploit chain, which is actionable security incident content relevant to enterprise security teams."
+https://arstechnica.com/security/2026/03/from-iran-to-ukraine-everyones-trying-to-hack-security-cameras/,ars-technica,"From Iran to Ukraine, everyone’s trying to hack security cameras",Research shows apparent Iranian state hackers trying to hijack consumer-grade cameras.,2026-03-07T11:30:06+00:00,True,84,"It describes a confirmed, named threat pattern involving state-backed attempts to hijack security cameras, which is actionable threat intelligence relevant to enterprise physical security and network exposure."
+https://arstechnica.com/security/2026/03/google-bumps-up-q-day-estimate-to-2029-far-sooner-than-previously-thought/,ars-technica,"Google bumps up Q Day deadline to 2029, far sooner than previously thought",Company warns entire industry to move off RSA and EC more quickly.,2026-03-25T15:49:17+00:00,True,88,"This reports an official Google warning and accelerated migration timeline away from RSA and elliptic-curve cryptography, which is a vendor-driven operational advisory with broad enterprise IT impact."
+https://arstechnica.com/security/2026/03/hundreds-of-millions-of-iphones-can-be-hacked-with-a-new-tool-found-in-the-wild/,ars-technica,Millions of iPhones can be hacked with a new tool found in the wild,"DarkSword, a powerful iPhone-hacking technique, has been discovered in use by Russian hackers.",2026-03-19T20:11:36+00:00,True,95,"It reports a confirmed in-the-wild iPhone exploitation technique used by Russian hackers, which is actionable threat intelligence relevant to enterprise security teams managing mobile fleets."
+https://arstechnica.com/security/2026/03/internet-yiff-machine-we-hacked-93gb-of-anonymous-crime-tips/,ars-technica,Internet Yiff Machine: We hacked 93GB of “anonymous” crime tips,Ultra-sensitive data may have been hacked.,2026-03-26T21:04:31+00:00,False,84,"The title and body are too vague to confirm a named security incident, affected enterprise systems, or actionable operational impact for enterprise IT teams."
+https://arstechnica.com/security/2026/03/llms-can-unmask-pseudonymous-users-at-scale-with-surprising-accuracy/,ars-technica,LLMs can unmask pseudonymous users at scale with surprising accuracy,Pseudonymity has never been perfect for preserving privacy. Soon it may be pointless.,2026-03-03T12:30:24+00:00,False,92,"This is a general privacy/AI analysis piece rather than a confirmed security incident, vendor advisory, outage, or actionable enterprise threat report."
+https://arstechnica.com/security/2026/03/researchers-disclose-vulnerabilities-in-ip-kvms-from-4-manufacturers/,ars-technica,Researchers disclose vulnerabilities in IP KVMs from four manufacturers,Internet-exposed devices that give BIOS-level access? What could possibly go wrong?,2026-03-17T17:07:12+00:00,True,92,"It reports disclosed vulnerabilities in internet-exposed IP KVM devices across multiple manufacturers, which is actionable security information relevant to enterprise IT and security teams."
+https://arstechnica.com/security/2026/03/self-propagating-malware-poisons-open-source-software-and-wipes-iran-based-machines/,ars-technica,Self-propagating malware poisons open source software and wipes Iran-based machines,Development houses: It's time to check your networks for infections.,2026-03-24T12:38:09+00:00,True,96,"This reports a confirmed self-propagating malware campaign targeting open source software supply chains and wiping Iran-based machines, which is actionable threat intelligence with clear enterprise IT and security relevance."
+https://arstechnica.com/security/2026/03/supply-chain-attack-using-invisible-code-hits-github-and-other-repositories/,ars-technica,Supply-chain attack using invisible code hits GitHub and other repositories,Unicode that's invisible to the human eye was largely abandoned—until attackers took notice.,2026-03-13T20:18:08+00:00,True,93,"It describes a confirmed supply-chain attack technique affecting GitHub and other repositories, which is directly relevant to enterprise software security and developer infrastructure."
+https://arstechnica.com/security/2026/03/whats-known-about-wiper-attack-on-stryker-a-major-supplier-of-lifesaving-devices/,ars-technica,"The who, what, and why of the attack that has shut down Stryker’s Windows network",Company says it doesn't know how long it will take to restore its Microsoft environment.,2026-03-12T22:18:11+00:00,True,95,"This reports a confirmed cyberattack that shut down a major company’s Windows network, which is directly relevant to enterprise IT and security teams."
+https://arstechnica.com/security/2026/03/widely-used-trivy-scanner-compromised-in-ongoing-supply-chain-attack/,ars-technica,Widely used Trivy scanner compromised in ongoing supply-chain attack,"Admins: Sorry to say, but it's likely a rotate-your-secrets kind of weekend.",2026-03-20T20:50:46+00:00,True,98,"This reports a confirmed ongoing supply-chain compromise of the widely used Trivy security scanner, creating clear enterprise security and incident-response impact."
+t3_1s4sjeq,reddit,"Simple ""DashBoard""","This is a very basic IT question but I am struggling with coming up with a good solution.
+
+What would you do if you were asked to put up a temporary (1-2 months) TV that would display production goals that would be updated every 2-4 hours?  These numbers will be updated manually because they are future predictions based upon numerous other variables.   I have the TV and a miniPC (WIN11Pro).  
+
+Here is my quick solution:  Create an Excel spreadsheet with the data and share it.  Open the shared file up on the pc attached to the TV, zoom in (or go full screen) and the data will refresh as it is updated.  Do not domain join PC, setup on the guest WiFi, no sleep, no screensaver.
+
+Is there a better option that I am missing?",2026-03-27T03:05:17+00:00,False,99,"This is an individual troubleshooting request about setting up a temporary dashboard, not a confirmed incident, advisory, outage, or actionable enterprise security/operations news item."
+t3_1s4tdbp,reddit,Lots of posts in this sub are obvious pro-AI astroturfing.,"Of course not every pro-AI post is made by a bot or bought account, but I've noticed an awful lot of these lately.  The most blatantly obvious ones are from account names structured ""DashingRacoon6238"" that were made yesterday, but not all of them.  They all push the exact same talking points in each thread, and completely refuse to address other people's posts other than to deny their experiences and claim the exact opposite of the post they're replying to.  They all seem somewhat plausible, of course, until you drill down into specifics, then they disappear only to pop up in another thread.",2026-03-27T03:44:42+00:00,False,98,"This is a meta/opinion post about suspected astroturfing on Reddit and does not report a confirmed enterprise IT incident, advisory, outage, or actionable threat intelligence."
+t3_1s4tkr6,reddit,Anybody dump their VMWare subscription and Roll back to Perpetual Licenses with 3rd party support and regret it?,"VMware renewal is due next month and prices jumped 100% again.   
+They offered a 3 year contract with only a 10% increase for year 2 and 15% for year 3. 
+
+We were running 8.03 before we purchased Subscription licenses and I still have all of our perpetual license keys. There are 3rd parties that offer support and security patching for 20% of the cost of Broadcom, though we would be stuck on 8.03 forever  until we switched to another product. 
+
+Has anybody else gone this route and have any advice to offer?",2026-03-27T03:54:38+00:00,False,97,"This is an individual advice-seeking post about VMware licensing and support options, not a confirmed incident, outage, vulnerability, or official advisory with broad enterprise operational impact."
+t3_1s4uslb,reddit,RDP redirection of local resources x 2,"Hello, 
+
+I've searched high and low, and have not been able to find anybody in this scenario. 
+
+Let's say, a user with a FIDO key is connecting to a AVD and the fido key is passed through into the AVD, from the AVD he RDPs to a terminal server farm, is it possible to bring that local FIDO key into the RDP session as well? 
+
+Simple question, does RDP passthrough of local devices work on rdp double hop? ",2026-03-27T04:57:36+00:00,False,99,"This is an individual troubleshooting question about RDP/FIDO passthrough and does not report a broader incident, advisory, outage, or actionable threat intelligence."
+t3_1s4v1sl,reddit,"China-linked Red Menshen using BPFdoor, a stealthy backdoor in telecom network equipments to infiltrate telecom networks worldwide","Came across this thingy about a group called Red Menshen apparently using BPFdoor in telecom networks to compromise telecom networks worldwide
+
+What stands out is how it works: kernel-level backdoor using BPF, listening for specific packets instead of opening ports. So nothing obvious shows up in normal firewall logs. This feels like a nightmare scenario. Long-term persistence with very little visibility unless you’re doing deep network or kernel-level monitoring.
+
+Breakdown: https://thecybersecguru.com/news/bpfdoor-red-menshen-telecom-network-espionage/",2026-03-27T05:10:51+00:00,True,88,"It describes a named, confirmed nation-state-linked malware campaign using BPFdoor to infiltrate telecom networks worldwide, which is actionable threat intelligence relevant to enterprise security teams."
+t3_1s4wlcx,reddit,Windows Server 2022 On A Desktop,"Given a scenario where there is absolutely no cash and doing things the proper way is currently tight
+
+Can i run with good performance a Windows Server 2022 on a Dell end user type desktop 
+
+**Specifications**
+
+Intel Core i5 11th gen
+
+16GB DDR4 RAM
+
+500GB SATA SSD
+
+1Gbps NIC
+
+  
+**Planned Server Functions &amp; Roles**
+
+Primary DNS
+
+DHCP
+
+Basic Group Policy Management
+
+Active Directory Services
+
+A few startup scripts
+
+No file services on the desktop
+
+  
+**Number of users and sites**
+
+Site 1 - main site where the desktop will be physically - 25 users
+
+Site 2 - remote site - 15 users
+
+Site 3 - remote site - 15 users
+
+Site 4 - remote site - 15 users
+
+Site 5 - remote site - 15 users
+
+**-so roughly 85-90 users total across 5 sites**
+
+**-all remote sites are connected to the main site via site-site VPN (Sophos FWs)**",2026-03-27T06:39:00+00:00,False,98,"This is an individual deployment/troubleshooting question about running Windows Server on desktop hardware, not a confirmed incident, advisory, outage, or broadly impactful enterprise IT event."
+t3_1s4wy2h,reddit,PKI - Intermediate CA - certificate show old chain,"Hi,
+
+I was renewed Intermediate CA (same private key), signed it with offline CA.
+
+Install new certificate on Intermediate CA server. Everything is ok, certificates signed with new Intermediate certificate, with good chain, but on Microsoft Certification Authority console, all new certificates point to old chain.  Problem occurs on network devices, they get new certificate, but wirth old chain.
+
+Certiifcate opened on some other place, has a good chain.
+
+How to resolve this issue?
+
+Thanks",2026-03-27T07:00:55+00:00,False,98,"This is an individual troubleshooting question about a PKI certificate chain issue, not a confirmed incident, advisory, or broadly impactful enterprise IT event."
+t3_1s4xvjx,reddit,Exchange Online EWS outage?,"Is anyone else in EU west region having issues with EWS in Exchange online since Wednesday?
+
+Unfortunately we still have a few systems that require EWS which the software vendor hasnt updates to MS Graph yet.
+
+Since Wednesday we're running into HTTP 403 on about half of our mailboxes, with no difference in configuration or permissions between those troublesome mailboxes and other working ones.",2026-03-27T08:00:20+00:00,False,95,"This is an individual troubleshooting post about one tenant's Exchange Online EWS issues and does not confirm a broader outage, vendor advisory, or named widespread incident."
+t3_1s4xvpj,reddit,"Weekly 'I made a useful thing' Thread - March 27, 2026","There is a great deal of user-generated content out there, from scripts and software to tutorials and videos, but we've generally tried to keep that off of the front page due to the volume and as a result of community feedback.  There's also a great deal of content out there that violates our advertising/promotion rule, from scripts and software to tutorials and videos.
+
+We have received a number of requests for exemptions to the rule, and rather than allowing the front page to get consumed, we thought we'd try a weekly thread that allows for that kind of content. We don't have a catchy name for it yet, so please let us know if you have any ideas!
+
+In this thread, feel free to show us your pet project, YouTube videos, blog posts, or whatever else you may have and share it with the community. Commercial advertisements, affiliate links, or links that appear to be monetization-grabs will still be removed.",2026-03-27T08:00:33+00:00,False,98,"This is a community meta post inviting users to share projects and content, not a security incident, outage, vendor advisory, or actionable enterprise IT news item."
+t3_1s4z0ed,reddit,SMB Authentication After NTLM Is Disabled by Microsoft,"Hello,
+
+Microsoft is planning to disable NTLM by default in upcoming OS versions.
+
+Is there any way to use Kerberos authentication for Windows clients that are not joined to a domain?",2026-03-27T09:12:00+00:00,False,98,"This is an individual troubleshooting question about authentication configuration, not a confirmed incident, advisory with operational details, or broader enterprise-impacting event."
+t3_1s514p6,reddit,Question about Windows installer,"This is probably not the right place to ask but I have no clue where else to place this. So feel free to point into a direction if you know a better place to ask this.
+
+This is a question out of curiosity. I wanted to make this clear to prevent messages like ""use this tool, it makes things easier"" or similar. This is just about bare-metal Windows Installer / MSI modification.
+
+I'd like to access table data from within a deferred custom action. I know that there's no simple way of doing that as the immediate and deferred workflows are split apart.
+
+From my understanding, to achieve what I want, I need to split the task in two CAs:
+
+1. An immediate CA to set a property
+2. The deferred CA to access the data.
+
+I did some research and found information about ""CustomActionData"" which gets written and can be used by the deferred CA if the Source of a Type 51 CA is set to the Name of the deferred CA. But apart from using it within external Scripts, I did not find any information on how to utilize this within my bare-metal approach.
+
+Here's my current setup:
+
+|Action|Type|Source|Target|
+|:-|:-|:-|:-|
+|CA\_Set\_Symlink\_cmd|51|CA\_Set\_Symlink|\[KeyToDirectoryTable\]|
+|CA\_Set\_Symlink|3106|SystemFolder|""\[SystemFolder\]cmd.exe"" /c mklink /D ""C:\\LINK"" ""\[CustomActionData\]""|
+
+Which results in this MSI log messages:
+
+&gt;*MSI (s) (78:58) \[11:50:34:978\]: Executing op: CustomActionSchedule(Action=CA\_Set\_Symlink,ActionType=3106,Source=C:\\WINDOWS\\SysWOW64\\,Target=""C:\\WINDOWS\\SysWOW64\\cmd.exe"" /c mklink /D ""C:\\Link"" """",CustomActionData=C:\\Path\\To\\Directory\\.)*
+
+&gt;*MSI (s) (78:58) \[11:50:35:095\]: Note: 1: 1722 2: CA\_Set\_Symlink 3: C:\\WINDOWS\\SysWOW64\\ 4: ""C:\\WINDOWS\\SysWOW64\\cmd.exe"" /c mklink /D ""C:\\Link"" """"* 
+
+  
+So while the CustomActionData seems to be set, the actual deferred CA does or cannot access it.",2026-03-27T11:13:17+00:00,False,99,"This is an individual troubleshooting question about Windows Installer/MSI custom actions, not a confirmed incident, advisory, outage, or broadly impactful enterprise IT event."
+t3_1s51yaz,reddit,"OneDrive on Windows Server 2025 disappeared, cannot uninstall, and reinstall says newer version already installed","**RESOLVED - see comment for the solution**
+
+I’m dealing with a strange OneDrive issue on a client’s **Windows Server 2025** system.
+
+What happened:
+
+* OneDrive was already installed on the server and was working fine
+* The user was actively using it
+* Microsoft 365 Apps / Office 365 is also installed
+* Suddenly, the **OneDrive icon disappeared from the system tray**
+* It also no longer shows properly under normal programs, but it still appears in **Installed Apps**
+* Trying to uninstall it failed because the uninstall reference pointed to a path on the **D: drive**
+* I have no idea why it references D:
+* I deleted the stale uninstall registry key, so the broken Apps entry is now gone
+
+My goal is to **reinstall OneDrive** cleanly.
+
+What I tried:
+
+* Downloaded the latest `OneDriveSetup.exe` from Microsoft
+* Tried to install it manually
+* Setup says: **“A newer version of OneDrive is installed. You need to uninstall it first before installing this version.”**
+
+So I seem to be stuck in between:
+
+* broken/unregistered uninstall entry
+* but installer still detects a newer OneDrive version somewhere
+
+Has anyone seen this on **Windows Server 2025**?",2026-03-27T11:54:56+00:00,False,97,"This is an individual troubleshooting post about a single Windows Server/OneDrive installation issue, not a confirmed widespread incident, advisory, or broadly impactful enterprise IT event."
+t3_1s52oxr,reddit,"Windows secure boot certificate, how is this even possible?","\[rant I guess\]  
+  
+The last couple of weeks I have been trying to get our physical and virtual servers updated. I am just wondering who in the world decided to keep a certificate for secure boot alive for 15 years and not update this in the meantime so it would be updated during normal hardware/os replacements. So now a couple of months before the first one expires we have to update our servers.
+
+I have servers that have the new Windows UEFI CA 2023 installed, Microsoft UEFI CA 2023 and Microsoft Corporation KEK 2K CA 2023 not installed. Others have Windows UEFI CA 2023 and Microsoft Corporation KEK 2K CA 2023 installed, Microsoft UEFI CA 2023 not installed. Some have Windows UEFI CA 2023 and Microsoft UEFI CA 2023 installed, Microsoft Corporation KEK 2K CA 2023 not installed. Most are still status InProgress, I even have one that says it is completed but is missing Microsoft UEFI CA 2023.
+
+This is with servers up to CU 3/2026. You would expect this to be a smooth transition but instead I never met such a shitshow in more than 25 years in IT.
+
+We are a rather small shop and not using Intune so that might not help.
+
+
+
+",2026-03-27T12:29:07+00:00,False,86,"This is a personal rant/troubleshooting anecdote about inconsistent Secure Boot certificate updates, not a confirmed widespread incident, official advisory, or broadly actionable enterprise IT event."
+t3_1s53jpn,reddit,New Job Offer - Feel bad,"Just started at an MSP literally 2 months ago. I'm enjoying the work and love the mayhem ( so far ). I like the guys however I'm always looking for more money. My firm has basic benefits however I've had an offer for a much larger company, where it's remote desktop support just for their users for 2k more a year and a lot more benefits (8% pension, EV salary sacrifice, private healthcare)
+
+How do you guys get over the guilt? 
+
+I feel like I'm being selfish but the extra 150 odd a month wouldn't go a miss.
+
+Edit : 
+
+Company I work for is great, we support just over 100 local businesses, ranging from 3 users to 500+ depending on the org. The staff are great, I fit in. The work is decent and challenging. My experience with this company is amazing. That's why I think I'm feeling bad. ",2026-03-27T13:05:37+00:00,False,99,"This is a personal career advice post about job guilt and compensation, not an enterprise IT incident, advisory, outage, or actionable threat report."
+t3_1s53m9j,reddit,AVd Golden Image creation - Office channel keeps changing from onthly to semi-enterprise,"Recently been trying to spin up a new gold image for AVD deployment (win 11 multi session 25h2).
+
+Between deployments, we've changed office suite from semi annual to monthly channel for copilot for some parts of the business. that change seems to be sticking in live, but on this new box, i installed monthly channel from ODT (xml set to monthly).
+
+It installed fine, but after running updates on office, it's swapped back to semi annual inexplicably - i;ve been through GPOs and office 365 settings and cannot find any reason for it, and all the boxes in live (same local AD OU, not managing through intune) are fine and happy as Larry on Monthly channel.
+
+It's driving me up the wall ,adn i'm a bit blinkered now on other possible causes.
+
+gold image vm is completely fresh and new, not spun up from another image. put into the same ou as live boxes for policies and setup which are on monthly. office installed first, no other software.",2026-03-27T13:08:34+00:00,False,98,"This is an individual troubleshooting post about Office update channels on a single AVD gold image, not a confirmed incident, advisory, or broadly impactful enterprise IT event."
+t3_1s5404m,reddit,„Souveräner Virtual Desktop – Skalierbare Open Source Alternative zu Azure Virtual Desktop und M365“ Wie würdet ihr das machen?,"Hallo zusammen,
+
+Ich wusste nicht wo ich so eine Frage sonst stellen würde daher habe ich es hier probiert. ich wusste auch nicht welchen Flair ich nutzen sollte, aber da eine Meinungsfrage hier eher am besten wäre habe ich einfach opinion genommen, kann ja nichts schiefgehen.
+
+Wie der Titel schon sagt, geht es um ein Test-Szenario, wo man ein solches Thema mit folgendem Ziel durchsetzen möchte:
+
+Aufbau und Einbindung einer VDI-Lösung auf Basis der bestehenden Proxmox-Umgebung und Vermeidung von Vendor-Lock-in- sowie Hyperscaler-Abhängigkeiten inklusiv dazu die Bereitstellung einer Open-Source Alternative zu Azure Virtual Desktop und Microsoft 365.
+
+Das Unternehmen erhofft sich eine Microsoft Unabhängigkeit sowie die Vermeidung von sogenannten Hyperscaler und Vendor-Lock-In-Effekt.
+
+Da das unternehmen unabhängig von MS werden will, denke ich wären Linux alternativen, standardmäßig die richtige Richtung.  
+Ihr müsst übrigens davon ausgehen, dass ihr aus einem Europäischen Land kommt.
+
+Nun die wichtige Frage:
+
+&gt;Wie würdet ihr das machen?
+
+Ich erwarte keine konkrete Antworten sondern auch wenn gegeben Gegenfragen die euch dazu einfallen würden.  Einfach alles was euch dazu einfallen würde um so ein Ziel umzusetzen.
+
+Wer übrigens erfahren möchte Warum ich so eine Frage stelle der kann das Weiter unten Lesen.
+
+Ich habe leider Gottes, dieses Thema als Mittelstufenprojekt für meine Ausbildung als Fisi (FI für Systemintegration), keine Sorge ich bin nicht allein sondern mache das zu viert. Bitte geht mehr auf die Frage oben ein statt auf meine Situation zu konzentrieren, ich bestehe darauf.
+
+Ich habe versuscht den gleichen Beitrag in r/it zu posten aber ohne Erfolg auf Hilfe leider.",2026-03-27T13:24:18+00:00,False,98,"This is a Reddit opinion/troubleshooting request about designing an open-source VDI alternative, not a confirmed incident, outage, advisory, or actionable threat report relevant to enterprise IT news."
+t3_1s546tr,reddit,"Do not show the 'new application installed' notification group policy, can remove pinned apps from Windows 11 start menu.","Just a heads-up, as I haven't seen any information on this anywhere else, so FYI for others that might be struggling with it now or later.
+
+We've been struggling with some users having their pinned programs / apps wiped from the start menu from time to time, both in Windows 11 24H2 and 25H2. After scouring eventlogs, windows update logs, changing start menu layouts and anything that could tell us what was the cause, as it seemed to be happening rather randomly, we finally noticed, that we could trigger it when running a gpupdate. 
+
+The culprit was surprisingly the ""Do not show the ´new application installed´ notification"" policy, which are configured in Computer Configuration\ Administrative Templates\ Windows Components\ File Explorer\. 
+
+It's an older policy, the description for it can be seen below. We don't need it anymore, also reminder to my self, to run through other GPO's that might not are needed anymore. For us it was a global policy, but it was was far from everyone that had the issue, so seems to be a bug caused by Microsoft and their many changes to the start menu in Windows 11.
+
+We didn't dig much deeper into it, as the fix was simply to remove the policy for us, but there is also a possibility the issue could be related to it being an older policy and running updated 25H2 ADMX templates. So keep that in mind, if running into this problem with the pinned programs disappearing after a gpupdate.
+
+**Policy Description:**
+This policy removes the end-user notification for new application associations. These associations are based on file types (e.g. *.txt) or protocols (e.g. http:)
+
+If this group policy is enabled, no notifications will be shown. If the group policy is not configured or disabled, notifications will be shown to the end user if a new application has been installed that can handle the file type or protocol association that was invoked.",2026-03-27T13:31:54+00:00,False,95,"This is an anecdotal troubleshooting post about a group policy side effect, not a confirmed widespread incident, vendor advisory, or broadly impactful security/operational event."
+t3_1s54t8z,reddit,"Intermittent ""Incorrect Password"" on SQL Nodes after DC Migration - dcdiag shows RPC Error despite successful replication","
+Hi everyone,
+
+I’m facing a persistent but intermittent authentication issue after migrating a Domain Controller from VMware to a new environment (running on NVMe disks) using the same Name and same IP.
+
+The Setup:
+
+Topology: 4 DCs (1 Physical, 3 Virtual). FSMO roles are on a Virtual DC.
+
+Migration: Replaced a VMware DC with a new one on a different env (NUTANIX) using the same Name and same IP.
+
+Storage: The new environment is running on high-performance NVMe disks.
+
+Clients: SQL Server Always On nodes (mix of VMware and New Host VMs).
+
+Versions: Windows Server 2019.
+
+The Symptom:
+Users and Service Accounts sometimes get ""User or Password incorrect"" when logging into machines and after restarting the machine  login successfuly.
+
+Crucial Isolation Test Results:
+
+Scenario A: If I shut down the New DC and leave the others running, everything works perfectly.
+
+Scenario B: If I shut down all other DCs and leave ONLY the New DC running, it also works perfectly.
+
+Scenario C: When both the new and old DCs are running simultaneously, the ""Incorrect Password"" error returns.
+
+Troubleshooting &amp; Findings:
+
+Replication: repadmin /replsummary shows 100% success.
+
+DCDIAG: Running dcdiag on the New DC consistently fails with ""RPC Server is unavailable"" during replication tests, yet Test-NetConnection on port 135 is successful.
+
+Events: Event Viewer shows warnings: ""Degrade from Kerberos to NTLM (SPN-3)"".
+
+DNS: Setting the New DC as the Primary DNS on clients doesn't resolve the issue.
+
+The Question:
+This ""Scenario C"" conflict suggests a deep identity or protocol issue when these DCs coexist. Could the NVMe storage speed/latency be causing a race condition during Kerberos validation? Or is there a known issue with RPC timeouts when reusing the same Name/IP that mimics a ""Wrong Password"" error?
+
+Looking for deep-dive troubleshooting steps regarding AD Metadata or Kerberos encryption conflicts in this specific scenario.",2026-03-27T13:56:28+00:00,False,97,"This is an individual troubleshooting post about a specific Active Directory/SQL environment, not a confirmed broader incident, advisory, or enterprise-wide operational event."
+t3_1s54tb7,reddit,How long would it take to restore a 365 Tennant?,"Nightmare fuel stuff and I'm wondering if anyone has had to do this after a cyberattack or at least worked out how long it would take?
+
+Assuming that you've got proper backups of you Exchange, Sharepoint, etc, how long would a restore actually take? I'm guessing the biggest limit would be how fast you could upload to Microsoft (or maybe how fast it would come down from your backup provider).
+
+Say you had a 150GB in Exchange and 1.3TB in SharePoint?
+
+  
+",2026-03-27T13:56:31+00:00,False,98,"This is an individual hypothetical troubleshooting question about Microsoft 365 restore timing, not a confirmed incident, advisory, or broadly impactful enterprise IT event."
+t3_1s554qq,reddit,OneDrive (iOS) v16.35.2 causes app to crash and close when trying to access Sharepoint sites,"Been able to reproduce this on 3 iPhones today.
+
+Has anyone else encountered this?
+
+It worked fine before I installed the app update to this build.
+
+",2026-03-27T14:08:20+00:00,False,95,"This is a single-user troubleshooting report about an app crash after an update, without confirmation of a broader widespread incident or official vendor advisory."
+t3_1s55umu,reddit,Fleet of Dell Pro Max 16 MC16250 having BSOD due to Nvidia graphics card,"Anyone else have this model? We've tried everything to fix them but the issue persists. I've gotten system boards replaced, reinstalled Windows and drivers, manually updated/rolledback GPU and BIOS, disabling the PCIE Link State Power Management in Control Panel Advanced Power Settings. One of the big wigs has one of these laptops and I'm at a loss on how to proceed besides getting a different model.
+
+Nvidia card: RTX PRO 500 Blackwell",2026-03-27T14:34:47+00:00,False,97,"This is a single-organization troubleshooting post about BSODs on a specific laptop model, not a confirmed widespread incident, vendor advisory, or broadly impactful enterprise IT event."
+t3_1s55yns,reddit,Word and Excel slowness over the last 2 weeks,"has anyone else been getting a huge influx of end user tickets saying that specifically microsoft word and excel have been opening and running extremely slowly as of the past few weeks? my boss suspects that it’s due to a patch they pushed out two weeks ago but i haven’t been able to find any big articles or anything about it. the temporary fix has just been a good ol restart (a lot of our users leave their computers on constantly), and then we found that updating office from in word/excel and disabling the acrobat pdfmaker office com addin in excel helped as well, but now i’m getting users who tried both of those fixes and are back to the same slowness they were experiencing before. ",2026-03-27T14:38:53+00:00,False,95,"This is an individual troubleshooting discussion about Word and Excel slowness without confirmation of a named widespread incident, vendor advisory, or broadly verified enterprise-impacting bug."
+t3_1s56ak7,reddit,Am I right in thinking - This is outrageously low,"Got sent this through earlier for a role - based off an earlier CV in my career I imagine.
+
+Considering its 2026, minimum wage in the UK is £23k and the breadth of experience required, along with the added stress of working at multiple schools, that this is absolutely outrageous in terms of salary?!
+
+*""I am currently recruiting a permanent IT School Technician based across* ***northern city*** *up to £30,000 per annum + Benefits. You will cover 4 school sites across* ***northern city***\*.\*
+
+ 
+
+***Key Skills &amp; Experience Required***
+
+* *Previous IT Support experience in schools is essential*
+* *Excellent experience with windows 10/11, Active Directory, Group Policy and Office 365*
+* *Proficient networking experience covering switches, routers, Lan/WAN and Wi-Fi issues*
+* *Experience with virtual servers (VMWare, vSphere etc.) is highly desirable*
+* *Excellent stakeholder management experience and the ability to explain technical terms to non-technical people.*
+
+ 
+
+***Company Benefits***
+
+* *Optional Company Van*
+* *Company Pension*
+* *25 Days Annual Leave*
+* *Ability to purchase additional annual leave*
+* *Enhanced annual leave entitlement (up to 28 days) based on length of service""*",2026-03-27T14:50:31+00:00,False,99,"This is a salary/opinion discussion about an IT job posting, not a security incident, outage, vendor advisory, or actionable enterprise IT operational news."
+t3_1s56db9,reddit,Purview audit or search-unifiedauditlog errors out or slow,"Anybody seeing this? Our scripts keep falling to pull logs from time to time, GUI either errors out or takes forever to search anything. Sometimes it does work.
+
+GCC",2026-03-27T14:53:16+00:00,False,95,"This is an individual troubleshooting report about intermittent Microsoft Purview audit log issues in one environment, with no confirmed widespread outage, vendor advisory, or named incident."
+t3_1s57052,reddit,Windows Cluster Aware Updates,"I'm trying to sort out Cluster Aware Updates on a test cluster for a newer version of software we have in prod.  The cluster in question is not in prod.
+
+I can generate my preview and it lists updates.  I can do the Analyze cluster readiness and everything come back good except the proxy, which is a warning.
+
+I cannot seem to get the updates to run.  When I run 'Invoke-CAUrun -forceselfupdate -force"", I get an error that the Hyper V module is not installed on the primary node.  On the secondary node, the command completes and tells me the update has been triggered, but has not yet started and may take time or fail.
+
+Is this normal behavior?  How long should I wait.  Am I missing something stupid?  After I built the clusters (6 total), my manager decided to organize the AD objects into new OU's and broke the clusters due to AV &amp; Firewall GPO's that were not applied to the new OU's.  I was able to resolve that by applying the existing GPO's to the new OU's.
+
+By everything I can find online, this should be functional.  I have ran through the config wizard after you install the CAU feature and it is setup.
+
+\*\*\* EDIT \*\*\*
+
+The GUI seems to hang on Getting Cluster information.
+
+\*\*\* EDIT 2 \*\*\*
+
+Does the server(s) need to be pointed to a WSUS server or can they use whatever the native configuration is for updates on the server?",2026-03-27T15:16:17+00:00,False,98,"This is an individual troubleshooting post about Cluster Aware Updating in a test environment, not a confirmed incident, advisory, or broadly impactful enterprise IT event."
+t3_1s58agy,reddit,Looking for devcon.exe (or disable and reenable usb ports),"Just that, nothing more.  I'm not super confident that devcon.exe will work since nothing's worked so far.
+
+The goal to script disabling and enabling usb ports on an offline Windows 10 21h2 set up.  I asked AI but I'm getting led in circles.  Nothing I've tried in powershell or a command line with pnpentities or anything has actually worked.  The set up and situation aren't changing.  If can disable and enable the usb ports, that's will be a nice plus.  Once the ports are disabled, the mouse and keyboard I'm using to work with the machine should stop working so I need to have them enabled again on machine startup and work for some amount of time before they're automatically disabled again.
+
+I this but I don't see anything for a developer option in my visual studio 2022 download options.
+
+https://learn.microsoft.com/en-us/windows-hardware/drivers/download-the-wdk
+
+
+I also found this, but I'm not quite sure what to do with it.  I'm not a big fan of just running something on someone's github page (which I don't know how to do...).  This one looks like it's probably safe enough.
+
+https://github.com/Drawbackz/DevCon-Installer
+
+
+That had a link to here where someone was looking for xp version of devcon.exe.
+
+https://superuser.com/questions/1002950/quick-method-to-install-devcon-exe
+
+
+That has a link to here, but it looks like it was last updated in 2013.
+
+https://learn.microsoft.com/en-us/archive/blogs/deploymentguys/where-to-find-devcon-exe
+
+
+The target Windows 10 21h2 machine is permanently offline.  It would be getting the correct devcon.exe file from a Windows 11 25h2 machine and then moving it to the Windows 10 computer with a thumb drive.
+
+The Windows 10 machine is a set up with a single purpose.  It does that fine.  Unfortunately, it's out in a more public space.  I didn't really think anyone would come along with a keyboard and mouse and wire into, but here we are.  It's also not quite accessible, so there's a, ""How and why were you up there?"" angle to the situation.  But again, here we are.  My goal is just to disable the usb ports but I still might need them myself so they would get reenabled for a brief amount of time when the machine restarts.  The computer doesn't start unless someone's physically there too, so no one is just going to restart it on their own and get that window when the usb ports are still active.
+
+
+I already got physical usb port locks, but I want to disable it in the OS.
+
+For devcon.exe, it looks like it's the device manager from a command line, so that sounds like it might have more possibilities.",2026-03-27T16:02:13+00:00,False,98,"This is an individual troubleshooting request about scripting USB port disable/enable on one Windows machine, not a confirmed incident, advisory, outage, or broadly impactful enterprise IT event."
+t3_1s58cmx,reddit,"Am I Getting Fucked Friday, March 27th 2026","Brought to you by r/sysadmin 'Trusted VAR': u/SquizzOC with Trusted Telecom Broker u/Each1Teach1x27 for Telecom and u/Necessary_Time in Canada
+
+PMs are welcome to answer your questions any time, not just on Fridays.
+
+This weekly thread is here for you to discuss vendor and service provider expectations, software questions, pricing, and quotes for network services, licensing, support, deployment, and hardware.  
+
+Required Info for accurate answers:
+
+* Part Number
+* Manufacturer/vendor
+* Service Type and Service Location (DM Service Location)
+* Quantity (as applicable)
+
+All questions are welcome regarding:
+
+* Cloud Services - Security, configurations, deployment, management, consulting services, and migrations
+* Server configs
+* Storage Vendor options, alternatives, details,
+* Software Licensing - This includes Microsoft CSPs
+* Single site and multi-location connectivity – Dedicated internet access, Broadband, 5G
+* Voice services- SIP, UCaaS, Contact Center
+* Network infrastructure - overlay software, segmentation, routers, switches, load balancing, APs
+* Security - Access Management, firewalls, MFA, cloud DNS, layer 7 services, antivirus, email, DLP….
+* POTS replacement lines",2026-03-27T16:04:20+00:00,False,99,"This is a recurring community discussion thread for pricing and vendor questions, not a confirmed incident, advisory, outage, or actionable threat report."
+t3_1s58nco,reddit,Understanding hybrid join and co-management,"Hello everyone,
+
+I'm currently wrapping my head around my EntraID status on my device.
+
+We are using on Windows 11 25H2. We were on 24H2 and then W10 22H2 as of last year. We are using SCCM to image our computer that are AD Join. SCCM do have tenant attach connected and client settings says to register the device. The computer are hybrid-join when using the powershell cmdlet.
+
+Today, I saw we have many stale device and started going down the rabbit hole to find what to do. I got to this MS doc  
+[https://learn.microsoft.com/en-us/entra/identity/devices/manage-stale-devices](https://learn.microsoft.com/en-us/entra/identity/devices/manage-stale-devices)
+
+  
+Nice, I ran the command and got a good list in a CSV. Looking at the information in that, I found out something. There is a field named TrustType. Looking at this, nearly 95% of the device are Workplace. Other value for some are AzureAD or ServerAD. According to graph, these values mean ossible 
+
+
+
+Workplace (indicates bring your own personal devices)
+
+AzureAd (Cloud only joined devices)
+
+ServerAd (on-premises domain joined devices joined to Azure AD)
+
+  
+We are a federated domain. We use AD Connect to sync our AD. So in my understanding, all my device should be ServerAD. But why are they workplace?
+
+  
+Thank you",2026-03-27T16:14:40+00:00,False,98,"This is an individual troubleshooting post about Entra ID hybrid join and stale devices, not a confirmed incident, advisory, outage, or broadly impactful enterprise IT event."
+t3_1s58qwj,reddit,Not learning much during my internship,"Finally, after a few years of applying, I landed my first IT job. It’s a student IT support role. It took a lot of effot: going back to school, building projects, reworking my resume, applying to 100s of internships, so I’m genuinely grateful to have this opportunity.
+
+But I’m struggling a bit.
+
+I already had imposter syndrome coming in, and this situation isn’t helping. Our team has about 4–5 people handling different things: incident tickets (hardware/software), device lifecycle, inventory etc. I’m supposed to get exposure to a bit of everything during this 4-month co-op, but there’s basically no training of any sort.
+
+Everyone seems busy with their own work and no one has really taken responsibility for onboarding me. My manager and supervisor don’t seem very approachable (I got that vibe during the interview too), and they’re usually tied up in meetings, so I don’t feel comfortable reaching out to them much.
+
+One coworker told me to just start picking up easy tickets, but I have no prior experience. As a student, I expected at least some shadowing or guidance before jumping in. Right now, anything I’ve learned has been from trial and error or repeatedly asking coworkers questions.
+
+Now you guys might say that I shouldn’t rely entirely on others or I won't survive in IT, but when I compare with classmates who got internship at other companies, they’re getting structured training and shadowing for the first few weeks. What'smore depressing is that my team never greets me and they sometimesignore my messages if I ask something using teams (when they WFH), they just ghost me and act like nothing happened. My messages get ignored, and it honestly makes me feel pretty bad. In person, they’ll still help if I ask, but they're not very nice in general. They act like they didn't want a student but it's not the first time they hired a student. this organization always has students in all departments. on coworker even said that he's not responsible to train me when I asked for shadowing or something, he said team lead is responsible but team lead is always busy and usually WFH.
+
+So far (it’s been about 2 months of this 4 month internship), I’ve mainly done simple tasks like imaging laptops and a few easy tickets. Some days I barely have anything to do. It feels like I’m not learning much, which defeats the whole point of an internship.
+
+Is this normal for IT internships, or is this company just disorganized? Should I just give it more time and keep figuring things out on my own, or is it reasonable to expect at least some initial training?
+
+Also, they usually extend the internship for another 4-month term, but I’m not sure if it’s worth staying if I’m not learning much. My main goal was to gain real experience and build skills.
+
+Would appreciate any advice.",2026-03-27T16:17:57+00:00,False,99,"This is a personal internship/troubleshooting discussion with no confirmed security incident, outage, vendor advisory, or broader enterprise IT operational event."
+t3_1s595u8,reddit,"Got message from ""Guidepoint"" saying they have a client that wants to interview me for $300/hr to talk about data and observability tools.  Is this real?","Basically..title. Got this random message from a girl on LinkedIN from a company called Guidepoint saying they connect IT professionals with consulting firms and investors. They want to pay me $300/hr to talk about data observability tools environment and the tools we evaluated. (Datadog, etc.)I'm a senior sysadmin, not a consultant. It was like [this](https://www.reddit.com/r/Scams/comments/1ec5lh4/linkedin_scam_or_legit/), but shorter. This feels like a phishing attempt but the company looks real? Has anyone actually done this?",2026-03-27T16:32:16+00:00,False,99,"This is an individual Reddit post asking whether a recruiting/consulting outreach is legitimate, not a confirmed security incident, vendor advisory, outage, or broadly actionable enterprise IT threat report."
+t3_1s5agzm,reddit,Title: AVD + Intune: VMs enrolled but failing Conditional Access (Device Compliance),"Hey everyone,
+
+I’m hitting a wall with an Azure Virtual Desktop (AVD) rollout. We’ve managed to get the VMs built and appearing in Intune, but they aren’t registering as ""Compliant"" or even ""Registered"" in a way that satisfies our Conditional Access policies.
+
+**The Setup:**
+
+* **Host Pool:** \[Personal/Pooled\] Multi-session Windows 11.
+* **Enrollment:** Using the ""Enroll the VM with Intune"" option in the AVD deployment blade.
+* **Join Type:** \[Entra ID Joined / Hybrid Entra ID Joined\].
+* **The Issue:** The devices show up in Intune, and I can target them with configuration profiles, but they won’t successfully evaluate against compliance policies. Users are getting blocked by CA because the device is seen as ""Unmanaged"" or ""Not Compliant.""
+
+**What I've Checked:**
+
+* Verified the MDM User scope in Entra is set to 'All' or the specific AVD user group.
+* The VMs have the `Virtual Machine Contributor` and `Desktop Virtualization User` roles assigned.
+* Wait times: I’ve given it 24+ hours for the PRT (Primary Refresh Token) to sync.
+
+Does anyone have a ""gotcha"" list for AVD compliance? Specifically, is there a trick to getting the Entra ID device record to link correctly with the Intune record so CA sees the compliance state?
+
+Appreciate any insight!",2026-03-27T17:18:20+00:00,False,98,"This is an individual troubleshooting post about Azure Virtual Desktop and Intune compliance behavior, not a confirmed incident, advisory, or broadly impactful enterprise IT event."
+t3_1s5amqv,reddit,Issue with activation keys in M365 Admin Center,"We purchased Server 2025 Datacenter licenses Qty 3 (1 for each hypervisor).
+
+We used the downgrade option for 2022 and for some odd reason when looking for the key in the Admin Center it shows the 5 digits, but then says ""All licenses have been activated"".  Since we don't run Hyper-V we can't license the host.  
+
+I built some new VM's, but can't activate them because the original license key I can't find (or even see).  I tried looking in the registry, but the key that shows up for an activated VM doesn't match.  I remember I had to use SLUI 4 in order to activate as well.
+
+Microsoft said to contact the CSP it was bought from.  So I'm waiting to hear back from them.
+
+Anyon else run into this issue?",2026-03-27T17:24:06+00:00,False,98,"This is an individual troubleshooting question about Microsoft licensing and activation, not a confirmed incident, advisory, outage, or broadly impactful enterprise IT event."
+t3_1s5asa3,reddit,Is DDoS Protection at the ISP level worth it?,"See title.  Our ISP is offering DDoS protection (at the ISP level) for an extra $250 a month.  Is it really worth it?  Having them analyze our traffic and then send it to a third party to review makes me nervous, but maybe I'm overreacting.  I appreciate anyone's $0.02.",2026-03-27T17:29:36+00:00,False,98,"This is an individual advice-seeking question about whether to buy ISP DDoS protection, not a confirmed incident, vendor advisory, or broadly actionable enterprise IT event."
+t3_1s5c5ht,reddit,How do people actually make big jumps in IT roles?,"I’m trying to understand how people move up into better roles when they don’t fully match the job description.
+
+For context, I’m currently working as a Desktop Engineer, but my day-to-day involves a lot more than just basic support — things like Azure AD, Intune, M365 admin, device deployments, and being involved in rollout projects.
+
+I’ve been looking at roles like IT Project Engineer / Infrastructure Engineer, and I’d say I match maybe 70–80% of what they’re asking for. There are always a few areas I haven’t had as much hands-on experience in (usually things like networking or specific platforms).
+
+So my question is:
+
+Do people just apply for these roles anyway and learn the rest on the job?  
+
+Or do you wait until you tick basically every box before going for it?
+
+I don’t want to undersell myself and stay stuck, but I also don’t want to walk into something I’m not ready for.
+
+Would be good to hear how others have made that jump — especially in IT/MSP environments.",2026-03-27T18:18:28+00:00,False,99,"This is a personal career advice question on role progression, not an enterprise IT incident, advisory, outage, or actionable threat report."
+t3_1s5dqk6,reddit,Yet another thread about Microsoft's bad interface design,"None of this is news to anyone, but today I ran across this little line in the O365 Admin Console and it stuck with me. Right under **Default Payment Methods** it says:
+
+&gt;""You can replace the payment methods in this billing account by selecting the dots and then selecting Replace.""  
+
+
+The dots are fine, and I don't exactly object to the feature being placed within them.....but it takes an odd amount of self-awareness (and yet not) to be like
+
+""Hey, where will users look for this button.  Here, they'll look for it here.  Should I put the button there? No....no I'll put the button not there but *include a note about where the button is*.""
+
+MAYBE JUST ALSO PUT THE BUTTON IN THE PLACE YOU THINK PEOPLE WILL LOOK FOR IT. Is there a shortage of Links or something?",2026-03-27T19:16:42+00:00,False,98,"This is a personal complaint about Microsoft UI design in the O365 admin console, not a confirmed incident, outage, security issue, or operational advisory relevant to enterprise IT teams."
+t3_1s5e87r,reddit,Troubleshooting Cisco SIG blocking VS code extensions,"Hi Reddit,
+
+I’m working on an incident ticket at my workplace and could use some help. The systems team believes Cisco Secure Internet Gateway (SIG) is causing issues with a VM running in Azure. Specifically, they think it’s blocking VS Code extensions from updating and preventing one extension from opening. They said disabling SIG  solved the issue hence their belief it is the underlying reason.
+
+I’m a bit skeptical of this because they also blamed Cisco SIG in the past where they disabled SIG for one user that was having issues with Teams update failing but after a few days turned out to be incorrect.
+
+I’ve already checked the Cisco SIG logs for this VM, and DNS and web traffic seem to be allowed. I’m wondering what else I could investigate to confirm if Cisco SIG is really the root cause, or if it might be something else.
+
+For context, the majority of the extensions are Salesforce-related are created by Salesforce, with one of them being “Salesforce Flow Visualiser” by Todd Halfpenny. The VM is used by a user who works with Salesforce.
+
+The systems team have informed me this issues with the extensions have occurred in the past and were related to firewall (likely Windows Firewall) however believe it is now Cisco SIG.I’m hoping someone here has faced something similar or has suggestions for what to check next.
+
+Any advice on what logs to look at or other places to ask would be greatly appreciated. Thanks!",2026-03-27T19:34:59+00:00,False,98,"This is an individual troubleshooting request about Cisco SIG and VS Code extensions, not a confirmed broader incident, advisory, or enterprise-wide operational event."
+t3_1s5eajh,reddit,How to view contents of SV2I and V2I files?,"Trying to view the contents of 15 year old SV2I and V2I files.  These are old backups of a laptop.  I see references to Veritas System Recovery, but I'm unable to download that program without an account setup that seems to involve having a specific type of account.  Any other tools out there that are either free or available at a reasonable cost?  ",2026-03-27T19:37:22+00:00,False,99,"This is an individual troubleshooting request about accessing old backup files, not a confirmed incident, advisory, outage, or broadly impactful enterprise IT/security event."
+t3_1s5eb11,reddit,Nutanix hit us with a 75% quote increase with a one day notice before expiration... so that project is dead. VMware is out and we were looking hyperconverged... Any other alternatives?,"We were looking to get off VMware and refresh our hardware in one fell swoop but it was already going to be expensive and a 75% quote increase announced the day before the quote expires has probably put that out of reach. I was REALLY looking forward to being able to handle purchasing and support for our international offices through nutanix directly, instead of through regional vendor support offices as is currently the case with Dell. 
+
+Does anyone have suggestions of similar hyperconverged providers with good international support experiences and ""reasonable"" prices that haven't started turning the screws yet?
+
+Hyper V isn't out of the question but I would prefer an all in one solution.",2026-03-27T19:37:49+00:00,False,98,"This is a single-organization purchasing advice request about hyperconverged alternatives, not a confirmed incident, outage, vulnerability, or vendor advisory with broad enterprise impact."
+t3_1s5ebri,reddit,Anyone else having cloudflare issues again?,"It seems like I am not alone: https://downdetector.com/status/cloudflare/
+
+I am seeing 502 errors to many sites that seem to be behind a cloudflare proxy. It also seems to be network specific right now. Happy Friday :)",2026-03-27T19:38:36+00:00,True,88,"This reports an apparent widespread Cloudflare-related outage causing 502 errors across many sites, which is relevant operational impact for enterprise IT teams."
+t3_1s5ey6r,reddit,"Admin account on MacOS for admin/SOC purposes (or, enabling root on MacOS)?","Hello everyone,
+
+I need to first say that I only have a minimal understanding of SOC; but from what I understand, one thing that is required is for all machines to:
+
+* Have the primary user running with user privs, and
+* Have a second account with admin privs for IT to use
+
+This makes sense, and it's what I've always done on Windows machines - user has their account, IT uses the built-in admin.
+
+So when it comes to MacOS, what is most commonly done to meet this requirement?  My first thought was just to create a second account, call it ""admin"" and be done with it, but then I realized that you can [enable root on MacOS](https://support.apple.com/en-us/102367).  I realize that there is some disagreement about enabling the root account in *nix, but I'm setting that aside for the moment and focusing on this secondary account issue.
+
+Thoughts?  What does everyone else do?
+
+Thanks all",2026-03-27T20:01:43+00:00,False,98,"This is an individual troubleshooting and best-practice question about macOS admin accounts, not a confirmed incident, advisory, outage, or broadly impactful enterprise IT event."
+t3_1s5gd8y,reddit,Laptop Overseas Shipments to Ukraine,"Greetings fellow SysAdmins,
+
+My team has been tasked with shipping used laptops to Contractors in Ukraine from the United States. 
+
+This task this day and age seems nearly impossible due to the current conflict. UPS claims they do this, but everyone we spoken with says they do not. 
+
+So my question out there to those who might be familiar with such shipments is what service are you using? How are you dealing with the offboards and getting things back to the US as well?
+
+Thanks for the inputs, and please be kind!",2026-03-27T20:55:43+00:00,False,98,"This is an individual logistics/troubleshooting question about shipping laptops, not a confirmed security incident, outage, vendor advisory, or broadly actionable enterprise IT threat."
+t3_1s5gjx3,reddit,Multi-tenant Exchange Online shared calendars in Classic Outlook,"My org has an admin assistant who manages calendars for 3 executives across 3 companies. Companies 1 and 2 use exchange online and the assistant has a licensed EO account in each tenant. Company 3 uses Google Workspace.
+
+The problem:
+
+* Shared calendars from the secondary EO tenant (Company 2) appear briefly in Classic Outlook then immediately disappear
+* Prior to removing company 2’s calendar,  events from company 2 were sometimes fully synced but more often than not company 2’s shared calendar was missing most events in classic outlook. 
+* New Outlook and OWA show all calendar items correctly
+* Classic Outlook works fine for the primary tenant (Company 1)
+* Google Workspace calendars work fine in both Classic and New Outlook
+* I don't have admin access to Company 2 or 3’s tenant so can't check Conditional Access policies or Modern Auth settings
+
+ What I have tried:
+
+* Toggling Shared Calendar Improvements on/off
+* Toggling Download Shared Folders off/on
+* Clearing credentials in Windows Credential Manager
+* Setting Company 2 account as default before adding the calendar
+* Disabling Cached Exchange Mode.
+* Removing and adding back the shared calendar. 
+
+ Has anyone actually solved multi-tenant EO shared calendars in Classic Outlook, or is this a known hard limitation? Currently testing New Outlook side by side and evaluating Calendly and calendar bridge as a fallback for scheduling across all 9 calendars. Is new Outlook the solution? It has been extremely difficult to get my users to accept new outlook. 
+
+I feel like I am missing something extremely obvious. I don’t usually deal with calendar issues.  Does anyone have any advice or experience with this type of setup?",2026-03-27T21:02:49+00:00,False,98,"This is an individual troubleshooting post about Outlook calendar sync behavior across tenants, not a confirmed incident, advisory, or broadly impactful enterprise IT event."
+t3_1s5hx6u,reddit,Stay Vigilant,"We have seen a large uptick in targeted attacks against VIPs and social engineering of our support desk this week. This isn't surprising considering we are a large logistics company (US) and current geopolitics put this industry and many others in the crosshairs. 
+
+Double check your CAPs, verify your auth policies, and make sure your first line teams are trained to deal with these situations. Buckle up, I'm willing to bet it gets worse before it gets worse.",2026-03-27T21:54:14+00:00,True,78,It provides actionable threat intelligence about a current uptick in targeted social-engineering attacks against support desks and VIPs that is relevant to enterprise security operations.
+t3_1s5is50,reddit,Celebrations...,"Enjoying a cold beverage after shutting down the last VM and our ESXi cluster at the colo site. That's $2k a month we won't shelling out. Not happy about needing to go in on Saturday to update the firewall, but I'll take my wins where I can get them.
+
+  
+Have a great weekend everyone!",2026-03-27T22:27:57+00:00,False,98,"This is a personal anecdote about decommissioning infrastructure and weekend maintenance, not a confirmed incident, advisory, outage, or broadly actionable enterprise IT event."
+t3_1s5iua9,reddit,User personas,"Every year since I joined my company (my badge can now legally drink) there has been an item on the todo list to create “personas” to use for reporting, device specs, security profiles, app licensing etc.
+
+Not a single year has anything meaningful been done.
+
+So before I demand its removed from our backlog can anyone tell me they’ve done this, and done it in a useful way?
+
+Do you use it for more than just one reason?
+
+TY",2026-03-27T22:30:21+00:00,False,98,"This is an individual advice-seeking post about internal IT planning and user personas, not a confirmed incident, advisory, outage, or actionable threat report relevant to enterprise IT operations."
+t3_1s5j65y,reddit,Public Folder to Shared Mailbox migration - what do you do with mail-enabled subfolders?,"Hey guys,
+
+I’m migrating Exchange Online Public Folders to Shared Mailboxes (manual PST export/import, no third-party tools).
+
+Some of the Public Folders have subfolders with their own email addresses.
+
+Since shared mailboxes don’t support email per folder, how do you usually handle this?
+
+•	Do you just put everything into one shared mailbox
+
+•	Or do you create separate shared mailboxes per address?
+
+If I go with one mailbox, I assume everything just lands in one inbox, right?
+
+Also, for subfolders that are not mail-enabled, will the sub folder structure behave the same after migrating to shared mailboxes?",2026-03-27T22:43:44+00:00,False,98,"This is an individual troubleshooting question about Exchange migration design, not a confirmed incident, advisory, outage, or broadly impactful enterprise IT event."
+t3_1s5j763,reddit,"External scan of my own domain showed open ports (8080, 8443) I can't close","While testing my domain on [Risqly](https://risqly.net/) I found that [my hosting provider](https://render.com/) keeps unknown ports open. The external scan report showed that ports 8080 and 8443 are open on my frontend instance, even though I never configured those ports myself. This negatively affects my external integrity score, so I really hope this can be turned off.
+
+
+
+My questions:
+
+1. Is it normal for managed hosting providers to expose ports like 8080 and 8443 by default?
+
+2. How do you usually determine whether this is provider-level infrastructure vs something misconfigured on your side?
+
+Curious if others have seen similar behavior.",2026-03-27T22:44:52+00:00,False,98,"This is an individual troubleshooting question about a single domain's open ports, not a confirmed broader incident, advisory, or enterprise-impacting outage."
+t3_1s5lv5f,reddit,A critical Windows security fix puts legacy hardware on borrowed time,"Microsoft is finally blocking a long-since retired program that it said led to “abuse and credential theft,” yet remained widely trusted for years. Beginning in April, Redmond will remove trust for kernel drivers that haven’t been vetted through its Windows Hardware Compatibility Program (WHCP). The company is specifically targeting kernel drivers signed by the now defunct cross-signed root program. But while this closes a security hole, Microsoft acknowledges that it could impact some legacy applications and use cases. To balance security with compatibility, the company will initially roll out the policy in “evaluation mode” with its April 2026 Windows 11 and Server update.  
+full article : [https://realnarrativenews.com/read/a-critical-windows-security-fix-puts-legacy-hardware-on-borrowed-time/](https://realnarrativenews.com/read/a-critical-windows-security-fix-puts-legacy-hardware-on-borrowed-time/)",2026-03-28T00:37:36+00:00,True,92,This reports an official Microsoft security policy change and forced trust removal for legacy kernel drivers with clear operational impact on Windows 11 and Server environments.
+t3_1s5me6i,reddit,MS365 - Odd Icon after Tenant-to-Tenant Migration,"Hopefully this is something simple, but I got an odd icon on all of the folders of a users mailbox that was copied from tenant-to-tenant 
+
+it is a blue icon of 3 boxes in an L shape, something like this where the X is a box
+
+    X
+    |
+    X-X  ",2026-03-28T01:01:03+00:00,False,98,"This is an individual troubleshooting question about a mailbox icon after a tenant migration, not a confirmed incident, advisory, outage, or broadly impactful enterprise IT event."
+t3_1s5mnri,reddit,What makes for a solid environmental sensor monitor for server rooms?,"TL;DR: What environmental monitoring system do you currently use? What do you wish it did differently - or that it doesn't already do?   
+  
+Hi fellow sysadmins! For a while I've wanted an easy and simple way to monitor the temperature and humidity for my small server room (which is really just a ""den"" that has no business being called anything more than a big-ish closet, but happens to be the perfect size for a single four post rack). I looked around and couldn't really find any simple or affordable environmental sensor solutions for my basic needs. I mean, it is just a home lab full of old Dell PowerEdges from eBay, after all. I didn't really want to spend more than $100 on equipment. I wanted PoE and easy setup, and to access it over the internet from anywhere.  
+  
+So a few months ago I decided to setup a little environmental monitoring system of my own and bought some sensor breakout boards and microcontrollers. I wanted to be alerted when it got too hot or too humid, or if the temperature or humidity rose rapidly. I also reeeeally wanted to see the history/trend over different periods of time. These servers have certainly thrown off the dynamics of heating and cooling in my tiny apartment over the last 7+ years and I thought it would be very interesting to finally visualize some real data for once. I've made some good progress. I'm alerting on static thresholds, and rate of change criteria. I can see trends on a graph, etc.  
+  
+I am curious though - what do *you* look for in a good environmental sensor monitoring system? What systems do you currently use? Is there any functionality missing that you wish the systems you use have - beyond just simple threshold and rate of change monitoring/alerting? I am the only engineer at a very small MSP, so I don't really have people to bounce these types of ideas off of, or to ask these kinds of questions. I'm sorry if this is the wrong eh.. vibe for r/sysadmin. I'm just genuinely curious how I could improve my little home lab monitoring setup - and curious what the larger industrial systems that I don't really have the opportunity to touch or mess with offer, or don't offer.",2026-03-28T01:12:54+00:00,False,98,"This is a personal product/troubleshooting discussion about home lab environmental monitoring, not a confirmed incident, advisory, outage, or actionable enterprise threat."
+t3_1s5n41n,reddit,Storage Replica Cluster,"Is this a place I can ask a quick question about clustered stretch storage replicas? If not, I apologize but I'm kind of pulling my hair out. Microsoft's own documentation says 2 completely different storage environments can be used to create a dual siloed storage replica environment. I've put in a ticket with Microsoft and they keep insisting I need shared storage, but the documentation specifically says it doesn't require that. I have setup countless always on setups for SQL and was really thinking this would work similarly. The cluster listener directing traffic to whichever node is active at the time. 
+I can configure the replica setup, but as soon as I add the cluster, it goes away. I'm familiar with Microsoft's documentation (and support) not being that great, but this seems completely contradictory. I guess my question really is just can this be done with 2 vms in different datacenters and separate storage with no shared storage? ",2026-03-28T01:33:36+00:00,False,98,"This is an individual troubleshooting question about Microsoft Storage Replica configuration, not a confirmed incident, advisory, outage, or broadly impactful enterprise IT event."
+t3_1s5oo95,reddit,Cybersecurity awareness onboarding for new employees,"Hello all
+
+We’re using KnowBe4 cybersecurity awareness platform, but honestly we haven’t fully nailed down the right process for new employees yet.
+
+Right now, training is entirely email driven. Users are added into smart groups and those groups are synced with KnowBe4. So users only start receiving awareness training once their email account is created and synced.
+
+We also run a quarterly awareness campaign for all users who already have email accounts.
+
+Looking for some advise like
+
+* Generally what is your standard process for onboarding new employees into awareness training?
+* Is training triggered by IAM Governance or AD/Entra sync, or email creation?
+* If a user gets email later ( may be after few months), how do you differentiate whether this is a new joiner or an existing employee who just got email now
+
+Appreciate any advise and suggestions",2026-03-28T02:47:45+00:00,False,98,"This is an individual process/troubleshooting question about employee security awareness onboarding, not a confirmed incident, advisory, outage, or actionable threat report."
+t3_1s5oq02,reddit,Unnecessary Gatekeeping in Sys Engineer Interviews,"Can we talk about the gate keeping some interview panelists are doing these days?  
+  
+Just because someone doesn't have a decade of commanding CI/CD pipelines and IaC modules, doesn't make them a ""false"" engineer. Long before I ever went to school for tech or had a job in tech, I've acquired many skills (such as PC repair, imaging, Citrix virtual apps, batch processing and scripting) long before I had to do any of that professionally.  
+  
+Since my lay off two months ago, I have been adamantly learning Terraform, checking my modules' sanity with Checkov, and learning GitHub Actions. I'VE LITTERALY BUILT OUT A FULL AZURE LANDING ZONE WITH RBAC, FIREWALLS, FIREWALL RULES, KEYVAULT, LOG ANLYTICS, DIAGNOSTICS, VNETS, NSGs... Just because I haven't done it hundreds of times in a production environment, doesn't make me less of an engineer.   
+  
+Tools can be taught to pretty much anyone. My 19 years in FinTech IT Ops and Prod Support with mostly ""exceeds expectations"" on performance reviews should speak for itself. Quite frankly, you interview panelists are probably overlooking candidates who would be far better suited to the job than the ""unicorn"" you guys are holding out for. Give people a chance.",2026-03-28T02:50:04+00:00,False,99,"This is a personal opinion/rant about hiring and interviews, not a confirmed security incident, outage, vendor advisory, or actionable enterprise IT threat report."
+t3_1s5oq2d,reddit,PAM approval workflow,"Hello All,
+
+Is there a way to implement an approval workflow in Delinea PAM where a user can request access before they even have access to the PAM portal?
+
+Basically:
+
+\- User has no PAM access
+
+\- Requests access to a system/secret
+
+\- Goes through approval within PAM system
+
+\- Then gets onboarded/granted access
+
+Or is this something that must be handled outside Delinea like ITSM/IAM or emails
+
+Appreciate any advise",2026-03-28T02:50:09+00:00,False,98,"This is an individual troubleshooting question about configuring Delinea PAM, not a confirmed incident, advisory, outage, or broadly impactful enterprise IT event."
+t3_1s5pdrz,reddit,Fastest gift card scam attempt I've seen so far.,"Had a new hire start this week that got a gift card scam text within 2 hours. They updated their LinkedIn right before they left to go into the office. The manager was absolutely floored at how fast it happened, but seemed understand when I demonstrated exactly how it could have happened.
+
+Person had the area they live in on their LinkedIn profile. I googled their name plus the area code and that led me to a few WhitePages.com entries for the person. I checked their public Facebook page and it had a tagged post from their sister, which matched a ""Related To"" person on one of the WhitePages entries that also listed the new hire's cell phone number. It was behind a paywall, but it was enough to validate the information for me. From there, all the scammer had to do was pay the $10 to get the cell phone number, easily look up who our CEO is, and text the new hire. I found the information in about 5 minutes, I imagine the scammer had most of it ready to go.",2026-03-28T03:21:41+00:00,False,95,"This is an anecdotal report of a common gift card scam targeting one new hire, without a confirmed broader incident, named campaign, or actionable enterprise-wide operational impact."
+t3_1s5pqvd,reddit,Any lurkers?,Any former Sys folks lurking after making a career change?  I feel like I fell up into this role and I'm beginning to hate it.  Anyone change careers and like it?  I was considering going to dental school earlier today...,2026-03-28T03:39:41+00:00,False,99,"This is a personal career-change discussion with no security incident, outage, vendor advisory, or actionable enterprise IT operational impact."
+t3_1s5t36y,reddit,Has anyone else noticed the increasing use of AI in sysadmin tasks?,"I've been playing around with some AI tools for automating routine admin tasks, and they're getting pretty sophisticated. Anyone here using them? What's your take on how AI will shape our role as sysadmins in the future?",2026-03-28T06:40:15+00:00,False,98,"This is a general discussion/opinion prompt about AI in sysadmin work, not a confirmed incident, advisory, outage, or actionable enterprise IT security event."
+t3_1s5tisd,reddit,Google Workspace Management add-on,"Hi Fellow Sys admins,
+
+I am managing Google Workspace (GWS) for a large Higher Ed Institute.
+
+I am using OkGoldy and BulkyDuce add-ons for my day to day management. Those extensions of Google Sheets were very useful in creating new users, managing group members etc. as we receive such requests a lot.
+
+Now, both these add-ons have stopped working, OkGoldy stopped a while ago and BulkyDuce is not working since yesterday.
+
+I am also using GAM as well but to be honest I am a GUI guy and above mentioned operations are easily done in Google Sheet compared to GAM + CSV thingy.
+
+# Please help me find a similar Google Sheet add-on for GWS management (preferably free).",2026-03-28T07:05:46+00:00,False,98,"This is an individual troubleshooting/request-for-recommendations post about Google Workspace admin tools, not a confirmed incident, advisory, or broadly impactful enterprise IT event."
+t3_1s5uiwa,reddit,Logging into windows using a background cmd instance,"Hey, This might be confusing so prepare yourself
+
+  
+So, I've started using Apollo, (A Sunshine Fork) That allows me to remote to my pc from anywhere. I works pretty much flawlessly however there is one inconvenience that happens every time i want to launch a app directly from artemis and that is unless i sign in with the desktop app first, i am unable to launch said app. (I hope that made sense). I know that you can use the regedit or something like auto logon to skip the process of logging in however i preferably dont want to do that as i like to keep my pc locked for privacy reasons. Anyway going back, i had the idea to use apollos built in 'When Connected' Arguments to automate a login, that way i have ease of use whenever i use the app. Why i am comfortable doing it this way is that i use wireguard to connect to my computer, therefore pretty much no one else is able to connect and unlock my pc via apollo. Anyway, the overall idea is that Apollo will run a command that then unlocks my computer without me having to do it manually. Maybe this is impossible and im wasting my time but i might as well give it a shot.
+
+Thanks",2026-03-28T08:07:35+00:00,False,98,"This is an individual troubleshooting question about remotely unlocking a Windows PC, not a confirmed enterprise IT incident, advisory, outage, or broadly impactful security issue."
+t3_1s5vezs,reddit,I feel as though AI is already taking IT jobs indirectly,"My observation as a sysadmin is that it appears as though not as many IT workers are needed due to the improved efficiency of current IT workers thanks to AI. It also appears to have made the barrier to entry higher for someone which is in a helpdesk/support role which is seeking to transition to a sysadmin position. From personal experience I can say that my own team would easily have to be around 25% bigger if we didn't have AI available to us. This is all vibes based from my end, just wondering if anyone has felt the same way.",2026-03-28T09:03:25+00:00,False,98,"This is a personal opinion/discussion post about AI's indirect impact on IT staffing, not a confirmed incident, advisory, outage, or actionable enterprise security/operations news item."
+t3_1s5vxza,reddit,How do you avoid over-abstracting when explaining systems under pressure?,"it was a distributed systems question. consistency models. i know this cold. i have dealt with eventual consistency issues in production, i have debugged race conditions caused by this exact thing, i have explained it to junior engineers probably a dozen times
+
+interviewer asked me to walk through the tradeoffs and i just... started from the wrong place. went too abstract too fast. could tell i was losing them but couldnt find my way back. kept adding more context that made it more confusing
+
+afterwards i literally wrote out the perfect answer in like 4 minutes. sitting alone at my desk. no problem at all
+
+its not that i dont know it. its that something breaks when im being evaluated. has anyone actually figured out how to fix this specific thing",2026-03-28T09:36:23+00:00,False,99,"This is a personal interview-performance question and not a security incident, outage, vendor advisory, or actionable enterprise IT news item."
+t3_1s5wftn,reddit,What are you focusing on rn ?,"Hi, 
+
+with all the AGI hype, I’m wondering what I might be focusing or studying for my career now. I work as a traditional sysadmin, and I have development studies too ( rusty but there ).
+
+Is it worth at the current moment, learning any type of programming language ? I feel like in a year or so it might be completely useless. Ie python
+
+I don’t want to transition into devops, but I was wondering to start on python as mentioned, docker, IaC, etc. And move into AI specialization like local llms, automation, etc.
+
+What do you guys think ? What are you focusing on atm?
+
+Bests",2026-03-28T10:07:00+00:00,False,99,"This is a personal career advice discussion about skills to study, not an enterprise IT incident, advisory, outage, or actionable threat report."
+t3_1s5wltk,reddit,Going back to school,"Last year I did a 365 health check for a 200ish user company. I found a stack of issues in both on prem and m365 environment. They have an msp who has been neglecting their environment and just upselling various products and living off the margin. They had an IT manager on staff but they’ve now been fired but the msp is still in place. 
+
+They’ve reached out to me and asked if I’d be interested in coming on board. I do like a challenge and I have a pretty good idea of the mess I’d be walking into but my biggest doubt is that it’s probably 15+ years since I’ve managed a full on prem MS environment. They’ve barely implemented anything with 365, nothing is hybrid joined, everything is managed on prem and their licensing is also a mess. 
+
+So I guess I’m asking are there any good resources where I can brush up on the old ways of doing stuff? The goal would be to get them modernised and into the cloud but until then I’m going to have to manage the current mess. ",2026-03-28T10:17:02+00:00,False,97,"This is an individual career/troubleshooting post about managing one company’s neglected Microsoft environment, not a confirmed incident, advisory, or broadly impactful enterprise IT event."
+t3_1s5wtkg,reddit,Dell ME5024 Configuration: 1 Big ADAPT Pool vs 2 Balanced Pools?,"Setting up a new 3-node Vmware cluster with R760s (Fibre Channel direct-connect). The ME5024 has 20x 2.4TB HDDs and 4x 1.6TB SSDs.
+
+I’m leaning towards one big Pool on Controller A using ADAPT for the HDDs then Raid 10 for the 4x SSD so I get faster rebuilds and easier management of a single Datastore. Is the performance hit of leaving Controller B idle (Active/Passive essentially) noticeable with only 20 spinning disks, or should I stick to the 50/50 split the wizard recommends?
+
+I know I sort of messed up and didn't buy 4 extra spinning disks...but at the moment its not really something I can do.",2026-03-28T10:30:19+00:00,False,98,"This is an individual configuration/troubleshooting question about Dell storage setup, not a confirmed incident, advisory, outage, or broadly impactful enterprise IT event."
+t3_1s5xwie,reddit,A Browser Extension That Saves You From Leaking Secrets to AI,"This browser extension “Cloakr EasyPi” saves you from leaking secrets to AI (ChatGPT, Gemini and Claude) and runs entirely in your device.[Extension](https://chromewebstore.google.com/detail/cloakr-easypi/bhlboadknpmkaaacmgofmcfnpljacbhc)",2026-03-28T11:30:55+00:00,False,95,"This is a product/tool promotion for a browser extension and does not report a confirmed incident, vendor advisory, outage, or actionable named threat affecting enterprise IT operations."
+t3_1s617b3,reddit,Spent hours debugging TLS cert which was never the problem,"Spent an embarrassing amount of time debugging intermittent TLS failures on a multi-instance deployment. Certificate was valid, trusted CA and passing every check I ran. The app was fine locally and fine in staging. Under production load it would randomly drop connections.
+
+Turned out session resumption tickets were being issued by one server and presented to another and since they didn't share a ticket key, the second instance couldn't decrypt them. No error. Just a silent fallback to full handshakes. The only symptom was slightly elevated CPU across the fleet that I never thought to connect to TLS until I started actually reading the Wireshark traces.
+
+It got me thinking about how little most of us actually know about what's happening inside a TLS handshake. We treat it as a toggle cert installed, green padlock, ship it and that's fine until you're scaling horizontally or dealing with CDN edge termination or mTLS between services. Then the stuff that's been invisible starts actually mattering.
+
+The session ticket thing specifically is underrated. If you're running multiple Nginx or HAProxy instances without a shared, rotated ticket key, you're silently paying for full handshakes more than you realize. And TLS 1.3's 0-RTT mode is another one faster resumption, yes, but it introduces replay risk on non-idempotent endpoints that almost nobody thinks about when they enable it. ",2026-03-28T14:03:25+00:00,False,96,"This is a personal troubleshooting anecdote about TLS session resumption behavior, not a confirmed incident, advisory, outage, or broadly actionable enterprise security event."
+t3_1s61xoz,reddit,Could not get PEAP EAP-TLS NPS working for Wi-Fi,"This is becoming frustrating for me now.
+
+Environment:
+
+Servers: ADCS, DC etc all use  
+Windows Server 2025 
+
+Clients:  
+Windows 11 Enterprise
+
+  
+Trying to setup PEAP EAP-TLS
+
+All unsecure methods unchecked in NPS
+
+I have read all about the requirements in Microsoft Docs
+
+[https://learn.microsoft.com/en-us/windows-server/networking/technologies/nps/nps-manage-cert-requirements#minimum-server-certificate-requirements](https://learn.microsoft.com/en-us/windows-server/networking/technologies/nps/nps-manage-cert-requirements#minimum-server-certificate-requirements)
+
+[https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/certificate-requirements-eap-tls-peap](https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/certificate-requirements-eap-tls-peap)
+
+Created my cert templates according to the docs and published them.
+
+Straight EAP-TLS works fine (selecting only the ""Microsoft: Smart Card or other certificate (EAP-TLS)"") but as soon as I encapsulate EAP-TLS with PEAP, it fails.
+
+When setting up PEAP in NPS only ""Microsoft: Smart Card or other certificate (EAP-TLS)"" is selected, no EAP-MSCHAPv2
+
+  
+but still when trying to connect to wifi using PEAP EAP-TLS, it asks me for a username and password whereas using straight EAP-TLS directly connects.
+
+I have not yet deployed GPO to auto connect so I am testing manually to try and connect to wifi
+
+When using PEAP EAP-TLS event logs generate two entries with event IDs 6273, one for user and one for computer. I am not sure why the user event is even registered since I dont have any mschap options enabled.
+
+
+
+    Network Policy Server denied access to a user.
+    
+    Contact the Network Policy Server administrator for more information.
+    
+    User:
+    Security ID:DOMAIN\user
+    Account Name:user@domain.com
+    Account Domain:DOMAIN
+    Fully Qualified Account Name:domain.com/OU/user
+    
+    Client Machine:
+    Security ID:NULL SID
+    Account Name:-
+    Fully Qualified Account Name:-
+    Called Station Identifier:E6-38-12-41-DA-21:wifi
+    Calling Station Identifier:84-9A-51-61-45-CA
+    
+    NAS:
+    NAS IPv4 Address:192.168.1.6
+    NAS IPv6 Address:-
+    NAS Identifier:e6388325dd21
+    NAS Port-Type:Wireless - IEEE 802.11
+    NAS Port:1
+    
+    RADIUS Client:
+    Client Friendly Name:Unifi
+    Client IP Address:192.168.1.6
+    
+    Authentication Details:
+    Connection Request Policy Name:test
+    Network Policy Name:Unifi wifi
+    Authentication Provider:Windows
+    Authentication Server:WINSERVER1.domain.com
+    Authentication Type:EAP
+    EAP Type:-
+    Account Session Identifier:42373443354146383235334530434530
+    Logging Results:Accounting information was written to the local log file.
+    Reason Code:22
+    Reason:The client could not be authenticated  because the Extensible Authentication Protocol (EAP) Type cannot be processed by the server.
+
+
+
+and for the computer
+
+
+
+    Network Policy Server denied access to a user.
+    
+    Contact the Network Policy Server administrator for more information.
+    
+    User:
+    Security ID:DOMAIN\PC$
+    Account Name:host/PC.domain.com
+    Account Domain:DOMAIN
+    Fully Qualified Account Name:domain.com/OU/PCs/Windows PCs/Windows Computers/Windows 11 Computers/PC
+    
+    Client Machine:
+    Security ID:NULL SID
+    Account Name:-
+    Fully Qualified Account Name:-
+    Called Station Identifier:E6-38-12-41-DA-21:wifi
+    Calling Station Identifier:84-9A-51-61-45-CA
+    
+    NAS:
+    NAS IPv4 Address:192.168.1.6
+    NAS IPv6 Address:-
+    NAS Identifier:e6388325dd21
+    NAS Port-Type:Wireless - IEEE 802.11
+    NAS Port:1
+    
+    RADIUS Client:
+    Client Friendly Name:Unifi
+    Client IP Address:192.168.1.6
+    
+    Authentication Details:
+    Connection Request Policy Name:test
+    Network Policy Name:Unifi wifi
+    Authentication Provider:Windows
+    Authentication Server:WINSERVER1.domain.com
+    Authentication Type:PEAP
+    EAP Type:-
+    Account Session Identifier:30423230453941343330464433433831
+    Logging Results:Accounting information was written to the local log file.
+    Reason Code:300
+    Reason:No credentials are available in the security package
+    
+
+  
+Did anyone come across a similar issue? How did you solve this?",2026-03-28T14:32:47+00:00,False,98,"This is an individual troubleshooting request about configuring NPS/PEAP EAP-TLS, not a confirmed incident, advisory, outage, or broadly impactful enterprise IT event."
+t3_1s61zaq,reddit,Ideas for a very old crappy software,"I work at an MSP and we have a client that is full on-premise, they use an ACCESS based program which is terrible in database stability (tables get corrupted once a week) anyways the main situation is this VM running this software it only runs in windows of course, it needs to be 2012r2 (update to a newer the software won’t work) that sole VM is screaming at peak hour with 30 RDP sessions all working at the same time in this software. I try Cloud solution but is pointless is to expensive (running 24/7, 30 people around the globe no rest for that server) if that single VM crash is just mayhem, so I was thinking in some availability solution, on-premise or maybe temporary cloud, but I really don’t know where to start, if you guys have some Ideas I’ll appreciate. Thanks",2026-03-28T14:34:38+00:00,False,98,"This is a single-organization troubleshooting request about legacy software availability, not a confirmed incident, advisory, or broadly impactful enterprise IT event."

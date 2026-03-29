@@ -19,7 +19,7 @@ class NewsTriageService:
         self.embedding_service = EmbeddingService()
         self.llm_judge = LLMJudge()
 
-    def process_articles(self, articles: list[NewsEntry], run_id: str) -> list:
+    def process_articles(self, articles: list[NewsEntry], run_id: str, persist: bool = True) -> list:
         now = datetime.now(timezone.utc)
         retrieved_at = now.isoformat().replace("+00:00", "Z")
         all_results = []
@@ -81,12 +81,14 @@ class NewsTriageService:
                     scored.keep = False
                     scored.rank_score = 0.0
 
-            insert_triage_result(scored, run_id=run_id,
-                                 retrieved_at=retrieved_at)
+            if persist:
+                insert_triage_result(scored, run_id=run_id,
+                                     retrieved_at=retrieved_at)
             all_results.append(scored)
 
         kept = [item for item in all_results if item.keep]
         ranked = rank_articles(kept)
+        self._last_all_results = all_results  # available for evaluation, not used in production
         return ranked
 
 
