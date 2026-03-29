@@ -1,5 +1,5 @@
 """
-background.py — periodic news fetch from all registered sources.
+services/background.py — Periodic news fetch from all registered sources.
 
 Runs as an asyncio background task started by the FastAPI lifespan.
 Skips articles already present in the database to avoid re-scoring.
@@ -9,10 +9,10 @@ import logging
 import os
 import uuid
 
-from app import NewsTriageService
-from db import get_existing_ids
+from data.db import get_existing_ids
+from data.sources import SOURCES
 from models import NewsEntry
-from sources import SOURCES
+from services.ingest_service import IngestService
 
 logger = logging.getLogger(__name__)
 
@@ -20,7 +20,7 @@ FETCH_INTERVAL_SEC = int(os.getenv("FETCH_INTERVAL_MINUTES", "10")) * 60
 FETCH_LIMIT = int(os.getenv("FETCH_LIMIT", "25"))
 
 
-async def run_fetch_cycle(service: NewsTriageService) -> None:
+async def run_fetch_cycle(service: IngestService) -> None:
     """Fetch from all registered sources, skip seen IDs, triage novel articles."""
     loop = asyncio.get_event_loop()
     logger.info("Background fetch cycle starting…")
@@ -62,11 +62,8 @@ async def run_fetch_cycle(service: NewsTriageService) -> None:
     )
 
 
-async def background_fetch_loop(service: NewsTriageService) -> None:
-    """
-    Loop indefinitely: wait a short startup delay, then fetch on every
-    FETCH_INTERVAL_SEC interval.
-    """
+async def background_fetch_loop(service: IngestService) -> None:
+    """Loop indefinitely: short startup delay, then fetch every FETCH_INTERVAL_SEC."""
     await asyncio.sleep(5)
     while True:
         try:

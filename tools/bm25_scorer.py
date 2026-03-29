@@ -3,9 +3,10 @@ from typing import List
 
 from rank_bm25 import BM25Okapi
 
-from config import BM25_MAX_SCORE, BM25_QUERY_TERMS
+from config import BM25_MAX_SCORE
 from models import NewsEntry
-from preprocess import build_article_text
+from tools.preprocess import build_article_text
+from tools.vocabulary import BM25_QUERY_TERMS
 
 
 def tokenize(text: str) -> List[str]:

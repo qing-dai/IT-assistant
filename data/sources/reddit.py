@@ -1,5 +1,5 @@
 """
-sources/reddit.py — Reddit news source.
+data/sources/reddit.py — Reddit news source.
 
 Fetches posts from a configurable subreddit via the public JSON API.
 """
@@ -8,7 +8,7 @@ from datetime import datetime, timezone
 
 import requests
 
-from sources.base import NewsSource
+from data.sources.base import NewsSource
 
 logger = logging.getLogger(__name__)
 

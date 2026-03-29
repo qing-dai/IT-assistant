@@ -1,5 +1,5 @@
 """
-sources/ars_technica.py — Ars Technica security news source.
+data/sources/ars_technica.py — Ars Technica security news source.
 
 Scrapes the /security/ section listing pages, then parses each article page for
 title, body summary, and publication date.
@@ -13,7 +13,7 @@ from urllib.parse import urljoin, urldefrag
 import requests
 from bs4 import BeautifulSoup
 
-from sources.base import NewsSource
+from data.sources.base import NewsSource
 
 logger = logging.getLogger(__name__)
 

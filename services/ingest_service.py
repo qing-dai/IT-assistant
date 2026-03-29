@@ -1,19 +1,29 @@
-from scorer import score_article
-from ranking import compute_rank_score, rank_articles
-from models import NewsEntry
-from embeddings import EmbeddingService
-from datetime import datetime, timezone
+"""
+services/ingest_service.py — Core triage pipeline for ingested news articles.
+
+Responsibilities:
+  - Score each article (lexical, semantic, freshness → fused score)
+  - Gate on thresholds: auto-discard / LLM judge / auto-keep
+  - Persist results to the database
+  - Return ranked kept articles
+"""
+import logging
 import uuid
-from db import init_db, insert_triage_result
-from bm25_scorer import BatchBM25Scorer
-from llm_judge import LLMJudge
+from datetime import datetime, timezone
+
 from config import AUTO_DISCARD_THRESHOLD, AUTO_KEEP_THRESHOLD, LLM_RELEVANCE_MIN
-from dotenv import load_dotenv
+from data.db import insert_triage_result
+from models import NewsEntry
+from tools.bm25_scorer import BatchBM25Scorer
+from tools.embeddings import EmbeddingService
+from tools.llm_judge import LLMJudge
+from tools.ranking import compute_rank_score, rank_articles
+from tools.scorer import score_article
 
-load_dotenv()
+logger = logging.getLogger(__name__)
 
 
-class NewsTriageService:
+class IngestService:
     def __init__(self) -> None:
         self.embedding_service = EmbeddingService()
         self.llm_judge = LLMJudge()
@@ -39,24 +49,21 @@ class NewsTriageService:
             fused_score = scored.fused_score
 
             if fused_score < AUTO_DISCARD_THRESHOLD:
-                print(
-                    f"Auto-discarding article '{article.title}' with fused score {fused_score:.3f}")
+                logger.info(f"Auto-discard '{article.title}' fused={fused_score:.3f}")
                 scored.keep = False
                 scored.final_score = fused_score
                 scored.decision_source = "auto_discard"
                 scored.rank_score = 0.0
 
             elif fused_score >= AUTO_KEEP_THRESHOLD:
-                print(
-                    f"Auto-keeping article '{article.title}' with fused score {fused_score:.3f}")
+                logger.info(f"Auto-keep '{article.title}' fused={fused_score:.3f}")
                 scored.keep = True
                 scored.final_score = fused_score
                 scored.decision_source = "auto_keep"
                 scored.rank_score = compute_rank_score(scored)
 
             else:
-                print(
-                    f"Sending article '{article.title}' for LLM judgment with fused score {fused_score:.3f}")
+                logger.info(f"LLM judge '{article.title}' fused={fused_score:.3f}")
                 start_time = datetime.now()
                 llm_result = self.llm_judge.judge(
                     source=article.source,
@@ -64,9 +71,8 @@ class NewsTriageService:
                     body=article.body or "",
                     fused_score=fused_score,
                 )
-                end_time = datetime.now()
-                print(
-                    f"LLM judgment completed in {(end_time - start_time).total_seconds():.2f} seconds")
+                elapsed = (datetime.now() - start_time).total_seconds()
+                logger.info(f"LLM judgment done in {elapsed:.2f}s")
 
                 scored.llm_reason = llm_result["reason"]
                 scored.llm_relevance_score = llm_result["relevance_score"]
@@ -81,32 +87,10 @@ class NewsTriageService:
                     scored.rank_score = 0.0
 
             if persist:
-                insert_triage_result(scored, run_id=run_id,
-                                     retrieved_at=retrieved_at)
+                insert_triage_result(scored, run_id=run_id, retrieved_at=retrieved_at)
             all_results.append(scored)
 
         kept = [item for item in all_results if item.keep]
         ranked = rank_articles(kept)
         self._last_all_results = all_results  # available for evaluation, not used in production
         return ranked
-
-
-if __name__ == "__main__":
-    from sources import SOURCES
-
-    init_db()
-    raw_articles = []
-    for source in SOURCES:
-        print(f"Fetching from {source.source_id}...")
-        raw_articles.extend(source.fetch(limit=20))
-
-    print(f"Fetched {len(raw_articles)} articles total. Processing...")
-    articles = [NewsEntry(**item) for item in raw_articles]
-
-    run_id = str(uuid.uuid4())
-    service = NewsTriageService()
-    results = service.process_articles(articles, run_id=run_id)
-    print(f"Kept {len(results)} articles after triage. Ranked results:")
-
-    for item in results:
-        print(item.model_dump())

@@ -1,5 +1,5 @@
-from config import KEEP_TERMS
-from preprocess import normalize_text
+from tools.vocabulary import KEEP_TERMS
+from tools.preprocess import normalize_text
 
 
 def matches_keep_rule(text: str) -> bool:

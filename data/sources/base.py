@@ -1,8 +1,8 @@
 """
-sources/base.py — Abstract base class for all news sources.
+data/sources/base.py — Abstract base class for all news sources.
 
 Adding a new source: subclass NewsSource, implement fetch(), and register the
-instance in sources/__init__.py.  No other files need to change.
+instance in data/sources/__init__.py.  No other files need to change.
 """
 from abc import ABC, abstractmethod
 

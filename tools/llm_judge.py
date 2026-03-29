@@ -1,8 +1,10 @@
 import json
 
 from openai import OpenAI
-from models import LLMJudgeResult
 from pydantic import ValidationError
+
+from config import LLM_JUDGE_MODEL
+from models import LLMJudgeResult
 
 
 def build_llm_prompt(source: str, title: str, body: str, fused_score: float) -> str:
@@ -42,11 +44,8 @@ Initial hybrid score: {fused_score:.2f}
 """.strip()
 
 
-# TODO add pydantic model for LLM response and validate response format more robustly
-
-
 class LLMJudge:
-    def __init__(self, model_name: str = "gpt-5") -> None:
+    def __init__(self, model_name: str = LLM_JUDGE_MODEL) -> None:
         self.client = OpenAI()
         self.model_name = model_name
 
@@ -63,10 +62,7 @@ class LLMJudge:
                         "Do not include markdown, comments, or extra text."
                     ),
                 },
-                {
-                    "role": "user",
-                    "content": prompt,
-                },
+                {"role": "user", "content": prompt},
             ],
             response_format={
                 "type": "json_schema",

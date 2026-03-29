@@ -1,21 +1,25 @@
+"""
+controllers/ingest.py — POST /ingest controller.
+
+Thin HTTP layer: validate the request, delegate to IngestService, return ACK.
+"""
 import asyncio
 import logging
 import uuid
 
 from fastapi import APIRouter, HTTPException
 
-from app import NewsTriageService
 from models import NewsEntry
+from services.ingest_service import IngestService
 
 logger = logging.getLogger(__name__)
 
 router = APIRouter()
 
-# Shared service instance injected at startup via set_service().
-_service: NewsTriageService | None = None
+_service: IngestService | None = None
 
 
-def set_service(service: NewsTriageService) -> None:
+def set_ingest_service(service: IngestService) -> None:
     global _service
     _service = service
 
