@@ -52,6 +52,7 @@ IT_assiatant/
 ├── main.py                      # Entry point: uvicorn server
 ├── config.py                    # Thresholds, weights, model names
 ├── models.py                    # Shared Pydantic schemas (NewsEntry, ScoredNewsEntry)
+├── .env.example                 # Example environment variable config
 │
 ├── controllers/                 # HTTP layer — request/response only
 │   ├── api.py                   # FastAPI app, lifespan, route mounting
@@ -119,7 +120,7 @@ pip install -r requirements.txt
 
 **2. Configure environment**
 
-Create a `.env` file in the project root:
+Create a `.env` file in the project root based on `.env.example` and fill in your [OpenAI API key](https://platform.openai.com/settings/organization/api-keys). Adjust thresholds and fetch settings as desired.
 
 ```env
 OPENAI_API_KEY=sk-...
