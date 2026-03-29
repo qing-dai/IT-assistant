@@ -87,8 +87,22 @@ IT_assiatant/
 │   ├── evaluate.ipynb
 │   └── analysis.ipynb
 │
+├── tests/
+│   ├── test_endpoints.py        # API contract tests for /ingest and /retrieve
+│   ├── test_schema.py           # NewsEntry schema validation tests
+│   └── test_scoring.py          # Pure scoring function tests (freshness, rank)
+│
 └── static/
     └── dashboard.html           # Live web dashboard
+```
+
+**Run tests**
+
+Before running tests, make sure to set up the environment and dependencies as described in the Setup section below. Then execute the following command from the project root:
+
+```bash
+source .venv/bin/activate
+python -m pytest tests/ -v
 ```
 
 ---
@@ -234,6 +248,37 @@ Returns all articles from the latest ingestion run (kept and discarded), sorted 
 ```bash
 curl http://localhost:8000/debug/scoring
 ```
+
+---
+
+## Monitoring
+
+All components use Python's standard `logging` module. Set `LOG_LEVEL=DEBUG` in `.env` for verbose output; default is `INFO`.
+
+**Startup**
+- Embedding model name and number of category prototypes precomputed
+- Background fetch task started or skipped
+
+**Per fetch cycle** (`services/background.py`)
+- Articles fetched per source, total novel vs already-seen count
+- Any per-source fetch failure with exception detail
+- Next scheduled interval
+
+**Per ingest batch** (`services/ingest_service.py`)
+- Batch summary on completion — one line showing all four decision buckets and final kept count:
+  ```
+  Batch complete run_id=abc…: 25 in → 4 auto_keep, 8 llm_kept, 9 llm_discarded, 4 auto_discard → 12 kept
+  ```
+- Per-article decision log: title, fused score, decision type, LLM elapsed time
+
+**Errors**
+- Embedding API call failures (model, count of texts) — `tools/embeddings.py`
+- LLM judge empty response or JSON/validation failure, both with article title — `tools/llm_judge.py`
+- Ars Technica article parse failures per URL
+
+**Scoring debug endpoint**
+
+`GET /debug/scoring` returns all articles from the latest run (kept + discarded) with every score visible — use this to inspect threshold decisions without reading logs.
 
 ---
 

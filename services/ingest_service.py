@@ -93,4 +93,18 @@ class IngestService:
         kept = [item for item in all_results if item.keep]
         ranked = rank_articles(kept)
         self._last_all_results = all_results  # available for evaluation, not used in production
+
+        n_auto_keep    = sum(1 for r in all_results if r.decision_source == "auto_keep")
+        n_llm_kept     = sum(1 for r in all_results if r.decision_source == "llm_judge" and r.keep)
+        n_llm_discarded = sum(1 for r in all_results if r.decision_source == "llm_judge" and not r.keep)
+        n_auto_discard = sum(1 for r in all_results if r.decision_source == "auto_discard")
+        logger.info(
+            f"Batch complete run_id={run_id}: "
+            f"{len(articles)} in → "
+            f"{n_auto_keep} auto_keep, "
+            f"{n_llm_kept} llm_kept, "
+            f"{n_llm_discarded} llm_discarded, "
+            f"{n_auto_discard} auto_discard → "
+            f"{len(kept)} kept"
+        )
         return ranked

@@ -1,10 +1,13 @@
 import json
+import logging
 
 from openai import OpenAI
 from pydantic import ValidationError
 
 from config import LLM_JUDGE_MODEL
 from models import LLMJudgeResult
+
+logger = logging.getLogger(__name__)
 
 
 def build_llm_prompt(source: str, title: str, body: str, fused_score: float) -> str:
@@ -88,12 +91,14 @@ class LLMJudge:
 
         content = response.choices[0].message.content
         if not content:
+            logger.error(f"LLM judge returned empty content for title='{title}'")
             raise RuntimeError("LLM judge returned empty content.")
 
         try:
             data = json.loads(content)
             validated = LLMJudgeResult.model_validate(data)
         except (json.JSONDecodeError, ValidationError) as e:
+            logger.error(f"LLM judge invalid output for title='{title}': {content!r} — {e}")
             raise RuntimeError(f"Invalid LLM judge output: {content}") from e
 
         return {
