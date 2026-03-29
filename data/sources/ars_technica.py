@@ -7,6 +7,7 @@ title, body summary, and publication date.
 import logging
 import re
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from urllib.parse import urljoin, urldefrag
 
@@ -146,12 +147,13 @@ class ArsTechnicaSource(NewsSource):
                 logger.error(f"Ars Technica: listing page failed {page_url}: {exc}")
                 break
 
-        results = []
-        for url in article_urls[:limit]:
-            item = _parse_article(url)
-            if item:
-                results.append(item)
-            time.sleep(self.sleep_sec)
+        with ThreadPoolExecutor(max_workers=8) as executor:
+            futures = {executor.submit(_parse_article, url): url for url in article_urls[:limit]}
+            results = []
+            for future in as_completed(futures):
+                item = future.result()
+                if item:
+                    results.append(item)
 
         results.sort(key=lambda x: x["published_at"], reverse=True)
         logger.info(f"Ars Technica: fetched {len(results)} articles")

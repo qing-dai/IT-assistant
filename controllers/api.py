@@ -29,7 +29,8 @@ logging.basicConfig(
 )
 logger = logging.getLogger("api")
 
-ENABLE_BG_FETCH = os.getenv("ENABLE_BACKGROUND_FETCH", "true").lower() == "true"
+ENABLE_BG_FETCH = os.getenv(
+    "ENABLE_BACKGROUND_FETCH", "true").lower() == "true"
 STATIC_DIR = Path(__file__).parent.parent / "static"
 
 
@@ -38,6 +39,7 @@ async def lifespan(app: FastAPI):
     init_db()
 
     logger.info("Warming up IngestService…")
+    # loads embedding model - expensive, do once
     ingest_service = IngestService()
     set_ingest_service(ingest_service)
     logger.info("IngestService ready.")
@@ -47,10 +49,12 @@ async def lifespan(app: FastAPI):
         bg_task = asyncio.create_task(background_fetch_loop(ingest_service))
         logger.info("Background fetch task started.")
     else:
-        logger.info("Background fetch disabled (ENABLE_BACKGROUND_FETCH != true).")
+        logger.info(
+            "Background fetch disabled (ENABLE_BACKGROUND_FETCH != true).")
 
     yield
 
+    # Clean shutdown: stop background task if running
     if bg_task:
         bg_task.cancel()
         try:

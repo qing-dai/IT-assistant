@@ -36,7 +36,8 @@ async def run_fetch_cycle(service: IngestService) -> None:
             logger.error(f"{source.source_id} fetch failed: {exc}")
 
     if not raw_all:
-        logger.warning("Background fetch: no articles retrieved from any source.")
+        logger.warning(
+            "Background fetch: no articles retrieved from any source.")
         return
 
     existing_ids = await loop.run_in_executor(None, get_existing_ids)
@@ -63,11 +64,13 @@ async def run_fetch_cycle(service: IngestService) -> None:
 
 async def background_fetch_loop(service: IngestService) -> None:
     """Loop indefinitely: short startup delay, then fetch every FETCH_INTERVAL_SEC."""
-    await asyncio.sleep(5)
+    await asyncio.sleep(5)  # wait for 5s for db and ingest service to be ready
     while True:
         try:
             await run_fetch_cycle(service)
         except Exception as exc:
-            logger.error(f"Unhandled error in fetch cycle: {exc}", exc_info=True)
-        logger.info(f"Next background fetch in {FETCH_INTERVAL_SEC // 60} minute(s).")
+            logger.error(
+                f"Unhandled error in fetch cycle: {exc}", exc_info=True)
+        logger.info(
+            f"Next background fetch in {FETCH_INTERVAL_SEC // 60} minute(s).")
         await asyncio.sleep(FETCH_INTERVAL_SEC)
