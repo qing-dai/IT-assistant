@@ -134,7 +134,7 @@ Before running tests, make sure to set up the environment and dependencies as de
 
 ```bash
 source .venv/bin/activate
-python -m pytest tests/ -v
+python3 -m pytest tests/ -v
 ```
 
 ---
@@ -175,7 +175,7 @@ ARS_LIMIT=10
 **3. Start the server**
 
 ```bash
-python main.py
+python3 main.py
 ```
 
 Server starts at `http://localhost:8000`. On startup:
