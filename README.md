@@ -34,42 +34,7 @@ A real-time IT news aggregation and filtering pipeline for enterprise IT manager
 
 ## Architecture
 
-```mermaid
-flowchart TD
-    subgraph sources["data/sources/"]
-        Reddit["reddit.py"]
-        Ars["ars_technica.py"]
-    end
-
-    subgraph tools["tools/"]
-        Scorer["scorer.py\n(BM25 30% + Embeddings 50% + Freshness 20%)"]
-        LLM["llm_judge.py\n(mid-range 0.45–0.75)"]
-    end
-
-    subgraph controllers["controllers/"]
-        API["api.py\n(lifespan, routing)"]
-        Ingest["ingest.py\nPOST /ingest"]
-        Retrieve["retrieve.py\nGET /retrieve\nGET /debug/scoring"]
-    end
-
-    subgraph services["services/"]
-        BG["background.py\n(periodic fetch + dedup)"]
-        IS["ingest_service.py\n(triage pipeline)"]
-        RS["retrieve_service.py"]
-    end
-
-    DB[("data/db.py\nSQLite")]
-
-    sources --> BG
-    BG --> IS
-    Ingest --> IS
-    IS --> tools
-    IS --> DB
-    RS --> DB
-    API --> Ingest
-    API --> Retrieve
-    Retrieve --> RS
-```
+![Architecture Diagram](doc/diagram.png)
 
 ---
 
@@ -96,10 +61,12 @@ GET /retrieve
 **Scoring pipeline per article:**
 
 ```
-BM25 lexical score  (30%)  ─┐
-Semantic score      (50%)  ─┼─► fused score ──► auto-discard (<0.45)
-Freshness score     (20%)  ─┘                   auto-keep    (≥0.75)
-                                                 LLM judge    (0.45–0.75)
+BM25 lexical score   (30%)  ─┐
+Semantic score       (50%)  ─┼─► fused score ──► auto-discard  (< 0.45)
+Hard-keep boost     (+0.15) ─┘                   auto-keep     (≥ 0.75)
+                                                  LLM judge     (0.45–0.75)
+
+kept articles ──► rank_score = 0.80 × relevance + 0.20 × freshness
 ```
 
 ---
@@ -151,6 +118,11 @@ IT_assiatant/
 │   ├── test_endpoints.py        # API contract tests for /ingest and /retrieve
 │   ├── test_schema.py           # NewsEntry schema validation tests
 │   └── test_scoring.py          # Pure scoring function tests (freshness, rank)
+│
+├── doc/                         # Design documentation
+│   ├── reflection.md            # Design reflection, evaluation methodology, and optimisation findings
+│   ├── diagram.png              # Architecture diagram
+│   └── UI.jpg                   # Dashboard screenshot
 │
 └── static/
     └── dashboard.html           # Live web dashboard
@@ -338,7 +310,7 @@ All components use Python's standard `logging` module. Set `LOG_LEVEL=DEBUG` in 
 
 **Scoring debug endpoint**
 
-`GET /debug/scoring` returns all articles from the latest run (kept + discarded) with every score visible — use this to inspect threshold decisions without reading logs.
+`GET /debug/scoring` returns all articles from the latest run (kept + discarded) with every score visible — use this to inspect threshold decisions without reading logs. The same data is also accessible in the **Scoring Debug** tab of the web dashboard at `http://localhost:8000`, providing a table view of all scores and decisions without needing to call the API directly.
 
 ---
 

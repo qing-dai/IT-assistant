@@ -91,7 +91,7 @@ Both kept and discarded articles are persisted — this enables evaluation, debu
 
 ---
 
-## 6. Evaluating Correctness and Efficiency
+## 6. Evaluating Correctness and Efficiency (my answer to bonus question.)
 
 ### Correctness
 
@@ -102,25 +102,25 @@ The correct approach is to build a benchmark dataset of representative articles 
 - **F1** — harmonic mean of precision and recall
 - **NDCG / MAP** — for evaluating ranking quality, not just binary keep/discard
 
-For this pipeline, I constructed a synthetic benchmark of 113 articles (`data/benchmark.csv`) annotated by GPT-4o as a proxy for domain expert annotation. The evaluation notebook (`analysis/evaluate.ipynb`) runs the full pipeline in-memory (`persist=False`) against this dataset and computes all metrics, saving results to `analysis/eval_runs/` for cross-run comparison.
+For this pipeline, I constructed a synthetic benchmark of 113 articles (`data/benchmark.csv`) annotated by GPT-5.4(`analysis/build_benchmark.ipynb`) as a proxy for domain expert annotation. The evaluation notebook (`analysis/evaluate.ipynb`) runs the full pipeline in-memory (`persist=False`) against this dataset and computes all metrics, saving results to `analysis/eval_runs/` for cross-run comparison.
 
 ### Efficiency
 
 Efficiency covers both **latency** and **cost**:
 
 - **Latency** — use [Langfuse](https://langfuse.com) to trace LLM and embedding call durations; use OpenTelemetry for service-level tracing; use Prometheus to monitor `/retrieve` call frequency, DB query time, and CPU/memory usage
-- **Cost** — the primary lever is reducing LLM calls. A stronger hybrid filter means fewer articles fall in the 0.45–0.75 borderline zone, directly reducing API spend. Parallelising LLM calls reduces latency without reducing cost.
+- **Cost** — the primary lever is reducing LLM calls. A stronger hybrid filter means fewer articles fall in the borderline zone, directly reducing API spend. Parallelising LLM calls reduces latency without reducing cost.
 
 ---
 
 ## 7. Pipeline Optimisation: Findings and Changes
 
-### Observations from the first evaluation run (92 articles)
+### Observations from the first evaluation run (`analysis/analysis.ipynb`, 92 articles)
 
 Running the pipeline on an initial subset revealed a structural bias against Ars Technica articles:
 
 - **Freshness penalty**: Reddit posts are typically hours old; Ars Technica security articles are often days or weeks old. With freshness weight at 0.20, older Ars articles received near-zero freshness scores, pulling their fused scores below the 0.45 discard threshold — even when content was highly relevant. 23 Ars articles were auto-discarded; zero Reddit articles were.
-- **BM25 vocabulary mismatch**: Ars Technica uses different terminology than the BM25 query terms were tuned for. Words like `"hacked"`, `"compromised"`, `"attack"`, `"backdoor"` were missing, causing `lexical_score=0` for most Ars articles.
+- **BM25 vocabulary mismatch**: Ars Technica uses different terminology than the BM25 query terms were tuned for. Words like `"hacked"`, `"compromised"`, `"attack"`, `"backdoor"` were missing, causing `lexical_score=0` for many Ars articles.
 - **Hyphen normalisation gap**: `"supply-chain"` in article text never matched `"supply chain attack"` in `KEEP_TERMS` because `normalize_text` did not strip hyphens.
 
 Among the borderline articles sent to the LLM judge: ~85% of Ars articles were kept; ~80% of Reddit articles were discarded. This confirmed the fused score was under-valuing Ars content at the filter stage, not at the relevance stage.
@@ -151,16 +151,35 @@ The optimised pipeline is more decisive: more articles are resolved without LLM 
 
 ---
 
-## 8. Proposed Improvements
+## 8. Assumptions
+
+Several requirements were underspecified; the following assumptions were made:
+
+- **Article body content** — the `/ingest` API marks `body` as optional. For Ars Technica, the scraper populates `body` with the article's summary paragraph rather than the full article text. The summary is tightly written and captures the key facts, so it is assumed sufficient for triage scoring while significantly reducing token usage for embedding and LLM calls. For Reddit, the post body (selftext) is used directly.
+
+- **Benchmark as gold standard** — no domain-expert annotators were available. GPT-5.4 was used to label the benchmark dataset (`data/benchmark.csv`). GPT-5.4 is among the most capable models currently available and its judgments on well-defined keep/discard criteria are assumed to be a reliable proxy for expert annotation. The model's reasoning was spot-checked against the actual article content during benchmark construction.
+
+- **Source field is a free string** — the API contract does not restrict `source` to a fixed set of values. The pipeline accepts any string and applies the same scoring logic regardless of source. Only the background fetcher is coupled to specific sources (Reddit, Ars Technica).
+
+- **Freshness decay window** — articles older than 7 days are assumed stale for operational purposes and receive a freshness score of 0. Within 7 days, freshness decays linearly from 1.0 to 0.0.
+
+
+---
+
+## 9. Possible Improvements
 
 1. **Source-specific vocabularies** — Reddit and Ars Technica use different registers (informal vs. formal; anecdotal vs. reported). Separate BM25 term lists and hard-keep phrases per source would improve lexical scoring accuracy.
 
 2. **Source-specific fused-score thresholds** — following from the above, the 0.45–0.75 borderline zone could be tuned per source to better target the LLM judge where it adds most value.
 
-3. **Expert-defined category prototypes and vocabulary** — the four semantic category prototypes and the BM25/hard-keep terms were designed by prompting GPT. In practice, IT professionals should define and validate these to better reflect what actually matters operationally.
+3. **Expert-defined category prototypes** — the four semantic category prototypes and the hard-keep terms were designed by prompting GPT. In practice, IT professionals should define and validate these to better reflect what actually matters operationally.
 
-4. **Domain-specific models** — both the embedding model (`text-embedding-3-small`) and LLM judge (`GPT-5`) are general-purpose OpenAI models. Domain-specific or fine-tuned alternatives could improve accuracy and reduce cost.
+4. **Data-driven BM25 vocabulary** — A more principled approach would be to crawl a larger corpus of articles from the actual sources (r/sysadmin, Ars Technica /security/) and extract high-frequency terms from confirmed-relevant articles. TF-IDF or pointwise mutual information (PMI) against a background corpus would surface terms that are both common in relevant articles and discriminative against non-relevant ones. 
 
-5. **LLM-refined category assignment** — the predicted category is always taken from the semantic step, which may not be accurate for borderline articles. For LLM-judged articles, the LLM could also assign the final category before DB persistence.
+5. **Domain-specific models** — both the embedding model (`text-embedding-3-small`) and LLM judge (`GPT-5`) are general-purpose OpenAI models. Domain-specific or fine-tuned alternatives could improve accuracy and reduce cost.
 
-6. **Dynamic recency in ranking** — `rank_score` is currently frozen at ingest time. Recomputing `freshness_score` dynamically at query time would ensure rankings always reflect true article age, at the cost of slightly more complex retrieval logic.
+6. **LLM-refined category assignment** — the predicted category is always taken from the semantic step, which may not be accurate for borderline articles. For LLM-judged articles, the LLM could also assign the final category before DB persistence.
+
+7. **Dynamic recency in ranking** — `rank_score` is currently frozen at ingest time. Recomputing `freshness_score` dynamically at query time would ensure rankings always reflect true article age, at the cost of slightly more complex retrieval logic.
+
+8. **Iterative hyperparameter optimisation** — all scoring weights (BM25 30%, semantic 50%, freshness 20%), triage thresholds (auto-discard 0.45, auto-keep 0.75), and the LLM relevance cutoff (70) were set empirically to initialise the pipeline. With a labelled benchmark in place, these constants could be systematically optimised.
