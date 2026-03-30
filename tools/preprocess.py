@@ -5,6 +5,7 @@ from models import NewsEntry
 
 def normalize_text(text: str) -> str:
     text = text.lower().strip()
+    text = text.replace("-", " ")
     text = re.sub(r"\s+", " ", text)
     return text
 

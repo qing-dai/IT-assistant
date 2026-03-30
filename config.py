@@ -12,10 +12,12 @@ import os
 class ScoringWeights:
     lexical: float = 0.30
     semantic: float = 0.50
-    freshness: float = 0.20
+    # remove the weight of recency for fused score, as it is considered in the final ranking score
+    freshness: float = 0.00
 
 
-OPENAI_EMBEDDING_MODEL = os.getenv("OPENAI_EMBEDDING_MODEL", "text-embedding-3-small")
+OPENAI_EMBEDDING_MODEL = os.getenv(
+    "OPENAI_EMBEDDING_MODEL", "text-embedding-3-small")
 LLM_JUDGE_MODEL = os.getenv("LLM_JUDGE_MODEL", "gpt-5")
 
 BM25_MAX_SCORE = 8.0

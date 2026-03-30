@@ -1,0 +1,3 @@
+run_label,run_ts,precision,recall,f1,false_negatives,false_positives,total,auto_keep,auto_discard,llm_kept,llm_discarded,ars-technica_precision,ars-technica_recall,ars-technica_f1,reddit_precision,reddit_recall,reddit_f1
+baseline,20260329_230459,0.679,0.594,0.633,13,9,113,6,29,22,56,0.842,0.571,0.681,0.333,0.75,0.462
+optimize1,20260330_004810,0.806,0.781,0.794,7,6,113,1,58,30,24,0.815,0.786,0.8,0.75,0.75,0.75

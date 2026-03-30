@@ -60,3 +60,9 @@ def test_invalid_published_at_raises():
     item = {**VALID_ITEM, "published_at": "not-a-date"}
     with pytest.raises(ValidationError):
         NewsEntry(**item)
+
+
+def test_arbitrary_source_accepted():
+    # source is a free-form string — not restricted to reddit/ars-technica
+    entry = NewsEntry(**{**VALID_ITEM, "source": "hacker-news"})
+    assert entry.source == "hacker-news"

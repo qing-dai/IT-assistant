@@ -2,7 +2,7 @@ import sqlite3
 from pathlib import Path
 
 
-DB_PATH = Path("triage_results_new.db")
+DB_PATH = Path("triage_results.db")
 
 
 def get_connection():

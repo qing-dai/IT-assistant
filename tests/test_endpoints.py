@@ -83,6 +83,23 @@ def test_ingest_invalid_date_returns_422(client):
     assert response.status_code == 422
 
 
+# --- arbitrary source ---
+
+def test_ingest_arbitrary_source_returns_200(client):
+    batch = [{**VALID_BATCH[0], "id": "arb-001", "source": "hacker-news"}]
+    response = client.post("/ingest", json=batch)
+    assert response.status_code == 200
+
+
+def test_ingest_arbitrary_source_response_shape(client):
+    batch = [{**VALID_BATCH[0], "id": "arb-002", "source": "hacker-news"}]
+    response = client.post("/ingest", json=batch)
+    body = response.json()
+    assert body["status"] == "ok"
+    assert "run_id" in body
+    assert body["ingested"] == 1
+
+
 # --- GET /retrieve ---
 
 def test_retrieve_returns_200(client):

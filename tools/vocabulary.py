@@ -59,7 +59,7 @@ KEEP_TERMS = [
     "active exploit",
     "phishing campaign",
     "supply chain attack",
-]
+    "data theft"]
 
 
 BM25_QUERY_TERMS = [
@@ -103,4 +103,13 @@ BM25_QUERY_TERMS = [
     "cisco",
     "cloudflare",
     "oracle",
+    "hacked",
+    "compromised",
+    "attack",
+    "backdoor",
+    "infected",
+    "malware",
+    "stealthy",
+    "exfiltration",
+    "phishing"
 ]

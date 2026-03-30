@@ -31,4 +31,4 @@ class BatchBM25Scorer:
 
     def get_normalized_scores(self) -> List[float]:
         raw_scores = self.get_raw_scores()
-        return [min(score / BM25_MAX_SCORE, 1.0) for score in raw_scores]
+        return [min(max(score, 0.0) / BM25_MAX_SCORE, 1.0) for score in raw_scores]

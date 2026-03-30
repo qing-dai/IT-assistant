@@ -19,6 +19,8 @@ Keep only if the item is relevant for enterprise IT managers, such as:
 - outages
 - severe bugs or broken updates
 - vendor advisories or deprecations with operational impact
+- field reports of confirmed attack patterns or widespread incidents affecting multiple organizations, even without an official vendor advisory
+- supply-chain attacks on open-source packages with enterprise exposure
 
 Discard if it is mainly:
 - troubleshooting discussion
@@ -91,14 +93,16 @@ class LLMJudge:
 
         content = response.choices[0].message.content
         if not content:
-            logger.error(f"LLM judge returned empty content for title='{title}'")
+            logger.error(
+                f"LLM judge returned empty content for title='{title}'")
             raise RuntimeError("LLM judge returned empty content.")
 
         try:
             data = json.loads(content)
             validated = LLMJudgeResult.model_validate(data)
         except (json.JSONDecodeError, ValidationError) as e:
-            logger.error(f"LLM judge invalid output for title='{title}': {content!r} — {e}")
+            logger.error(
+                f"LLM judge invalid output for title='{title}': {content!r} — {e}")
             raise RuntimeError(f"Invalid LLM judge output: {content}") from e
 
         return {

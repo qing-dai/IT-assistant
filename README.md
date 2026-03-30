@@ -1,6 +1,24 @@
-# IT Newsfeed Triage System
+# IT Newsfeed Triage System  <!-- omit in toc -->
 
 A real-time IT news aggregation and filtering pipeline for enterprise IT managers. Fetches articles from Reddit and Ars Technica, scores them for relevance, and surfaces only what matters — outages, security incidents, critical bugs, and vendor advisories.
+
+- [UI overview](#ui-overview)
+- [Functionality](#functionality)
+- [Architecture](#architecture)
+- [Workflow](#workflow)
+- [Folder Structure](#folder-structure)
+- [Setup](#setup)
+- [API Endpoints](#api-endpoints)
+  - [POST /ingest](#post-ingest)
+  - [GET /retrieve](#get-retrieve)
+  - [GET /debug/scoring](#get-debugscoring)
+- [Monitoring](#monitoring)
+- [Dashboard](#dashboard)
+- [Adding a New Source](#adding-a-new-source)
+- [Expanding Vocabulary](#expanding-vocabulary)
+---
+## UI overview
+![Dashboard screenshot](doc/UI.jpg)
 
 ---
 
@@ -11,6 +29,47 @@ A real-time IT news aggregation and filtering pipeline for enterprise IT manager
 - **Ranking** — kept articles ranked by importance × recency
 - **API** — two REST endpoints for the Nexthink mock newsfeed contract (`/ingest`, `/retrieve`)
 - **Dashboard** — live web UI at `http://localhost:8000`
+
+---
+
+## Architecture
+
+```mermaid
+flowchart TD
+    subgraph sources["data/sources/"]
+        Reddit["reddit.py"]
+        Ars["ars_technica.py"]
+    end
+
+    subgraph tools["tools/"]
+        Scorer["scorer.py\n(BM25 30% + Embeddings 50% + Freshness 20%)"]
+        LLM["llm_judge.py\n(mid-range 0.45–0.75)"]
+    end
+
+    subgraph controllers["controllers/"]
+        API["api.py\n(lifespan, routing)"]
+        Ingest["ingest.py\nPOST /ingest"]
+        Retrieve["retrieve.py\nGET /retrieve\nGET /debug/scoring"]
+    end
+
+    subgraph services["services/"]
+        BG["background.py\n(periodic fetch + dedup)"]
+        IS["ingest_service.py\n(triage pipeline)"]
+        RS["retrieve_service.py"]
+    end
+
+    DB[("data/db.py\nSQLite")]
+
+    sources --> BG
+    BG --> IS
+    Ingest --> IS
+    IS --> tools
+    IS --> DB
+    RS --> DB
+    API --> Ingest
+    API --> Retrieve
+    Retrieve --> RS
+```
 
 ---
 
@@ -185,13 +244,13 @@ curl -X POST http://localhost:8000/ingest \
 
 **Required fields per item**
 
-| Field | Type | Description |
-|---|---|---|
-| `id` | string | Unique identifier |
-| `source` | string | e.g. `"reddit"`, `"ars-technica"` |
-| `title` | string | Article headline |
-| `published_at` | string | ISO 8601 UTC timestamp |
-| `body` | string | Article body (optional) |
+| Field          | Type   | Description                       |
+| -------------- | ------ | --------------------------------- |
+| `id`           | string | Unique identifier                 |
+| `source`       | string | e.g. `"reddit"`, `"ars-technica"` |
+| `title`        | string | Article headline                  |
+| `published_at` | string | ISO 8601 UTC timestamp            |
+| `body`         | string | Article body (optional)           |
 
 **Response**
 
