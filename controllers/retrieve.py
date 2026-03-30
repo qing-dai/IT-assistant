@@ -32,6 +32,13 @@ async def retrieve() -> JSONResponse:
     return JSONResponse(content=items)
 
 
+@router.get("/feed", summary="Internal: kept articles with full scoring fields for the dashboard")
+async def feed() -> JSONResponse:
+    loop = asyncio.get_event_loop()
+    items = await loop.run_in_executor(None, _service.get_filtered_full)
+    return JSONResponse(content=items)
+
+
 @router.get("/debug/scoring", summary="Scoring debug: all articles from latest run (kept + discarded)")
 async def debug_scoring() -> JSONResponse:
     loop = asyncio.get_event_loop()

@@ -70,8 +70,8 @@ def get_latest_run_items(limit: int = 90) -> list[dict]:
     return [dict(zip(columns, row)) for row in rows]
 
 
-def get_filtered_items() -> list[dict]:
-    """Return kept articles, one row per article_id (latest run wins), sorted by rank."""
+def get_filtered_items_full() -> list[dict]:
+    """Return kept articles with all scoring fields, for internal dashboard use."""
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("""
@@ -89,6 +89,32 @@ def get_filtered_items() -> list[dict]:
     columns = [desc[0] for desc in cursor.description]
     conn.close()
     return [dict(zip(columns, row)) for row in rows]
+
+
+def get_filtered_items() -> list[dict]:
+    """Return kept articles in the contract shape (id, source, title, body, published_at),
+    one row per article_id (latest run wins), sorted by rank."""
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        SELECT t.article_id AS id, t.source, t.title, t.body, t.published_at
+        FROM triage_results t
+        INNER JOIN (
+            SELECT article_id, MAX(id) AS max_id
+            FROM triage_results
+            WHERE keep = 1
+            GROUP BY article_id
+        ) latest ON t.id = latest.max_id
+        ORDER BY t.rank_score DESC, t.published_at DESC, t.article_id ASC
+    """)
+    rows = cursor.fetchall()
+    columns = [desc[0] for desc in cursor.description]
+    conn.close()
+    items = [dict(zip(columns, row)) for row in rows]
+    for item in items:
+        if item.get("published_at"):
+            item["published_at"] = item["published_at"].replace("+00:00", "Z")
+    return items
 
 
 def insert_triage_result(result, run_id: str, retrieved_at: str):
@@ -122,7 +148,7 @@ def insert_triage_result(result, run_id: str, retrieved_at: str):
         result.source,
         result.title,
         result.body,
-        result.published_at.isoformat(),
+        result.published_at.isoformat().replace("+00:00", "Z"),
         retrieved_at,
         int(result.keep),
         result.final_score,

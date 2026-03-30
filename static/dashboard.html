@@ -622,7 +622,7 @@
       resetCountdown();
       const grid = document.getElementById('grid');
       try {
-        const res = await fetch('/retrieve');
+        const res = await fetch('/feed');
         if (!res.ok) throw new Error('HTTP ' + res.status);
         const items = await res.json();
 
