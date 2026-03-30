@@ -3,11 +3,13 @@
 A real-time IT news aggregation and filtering pipeline for enterprise IT managers. Fetches articles from Reddit and Ars Technica, scores them for relevance, and surfaces only what matters — outages, security incidents, critical bugs, and vendor advisories.
 
 - [UI overview](#ui-overview)
+- [Reflection to the Nexthink Assessment](#reflection-to-the-nexthink-assessment)
 - [Functionality](#functionality)
 - [Architecture](#architecture)
 - [Workflow](#workflow)
 - [Folder Structure](#folder-structure)
 - [Setup (From Project Root)](#setup-from-project-root)
+- [Run Tests](#run-tests)
 - [API Endpoints](#api-endpoints)
   - [POST /ingest](#post-ingest)
   - [GET /retrieve](#get-retrieve)
@@ -19,6 +21,9 @@ A real-time IT news aggregation and filtering pipeline for enterprise IT manager
 ---
 ## UI overview
 ![Dashboard screenshot](doc/UI.jpg)
+
+## Reflection to the Nexthink Assessment
+**`doc/reflection.md` contains my detailed refelection on the assessment.**
 
 ---
 
@@ -128,15 +133,6 @@ IT_assiatant/
     └── dashboard.html           # Live web dashboard
 ```
 
-**Run tests**
-
-Before running tests, make sure to set up the environment and dependencies as described in the Setup section below. Then execute the following command from the project root:
-
-```bash
-source .venv/bin/activate
-python3 -m pytest tests/ -v
-```
-
 ---
 
 ## Setup (From Project Root)
@@ -182,6 +178,15 @@ Server starts at `http://localhost:8000`. On startup:
 - DB initialised
 - Embedding model warmed up
 - Background fetch loop started (first cycle runs after 5s)
+
+## Run Tests
+
+Before running tests, make sure to set up the environment and dependencies as described in the Setup section below. Then execute the following command from the project root:
+
+```bash
+source .venv/bin/activate
+python3 -m pytest tests/ -v
+```
 
 ---
 
