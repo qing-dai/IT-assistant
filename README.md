@@ -7,7 +7,7 @@ A real-time IT news aggregation and filtering pipeline for enterprise IT manager
 - [Architecture](#architecture)
 - [Workflow](#workflow)
 - [Folder Structure](#folder-structure)
-- [Setup](#setup)
+- [Setup (From Project Root)](#setup-from-project-root)
 - [API Endpoints](#api-endpoints)
   - [POST /ingest](#post-ingest)
   - [GET /retrieve](#get-retrieve)
@@ -139,7 +139,7 @@ python3 -m pytest tests/ -v
 
 ---
 
-## Setup
+## Setup (From Project Root)
 
 **1. Install dependencies**
 
@@ -190,6 +190,9 @@ Server starts at `http://localhost:8000`. On startup:
 ### POST /ingest
 
 Ingest a batch of raw news articles through the triage pipeline.
+**Note: the test should be called while the server is running, as it sends requests to the live API. The test will fail if the server is not running.**
+
+**Both endpoints should be tested in the root directory.**
 
 **Request**
 
@@ -256,17 +259,7 @@ curl http://localhost:8000/retrieve
     "source": "reddit",
     "title": "Critical zero-day in Windows actively exploited in the wild",
     "body": "...",
-    "published_at": "2026-03-29T10:00:00Z",
-    "keep": 1,
-    "decision_source": "auto_keep",
-    "fused_score": 0.81,
-    "rank_score": 0.76,
-    "lexical_score": 0.92,
-    "semantic_score": 0.88,
-    "freshness_score": 0.95,
-    "predicted_category": "security_incident",
-    "llm_reason": "",
-    "llm_relevance_score": 0.0
+    "published_at": "2026-03-29T10:00:00Z"
   }
 ]
 ```
