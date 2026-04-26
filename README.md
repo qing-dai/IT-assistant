@@ -3,7 +3,7 @@
 A real-time IT news aggregation and filtering pipeline for enterprise IT managers. Fetches articles from Reddit and Ars Technica, scores them for relevance, and surfaces only what matters — outages, security incidents, critical bugs, and vendor advisories.
 
 - [UI overview](#ui-overview)
-- [Reflection to the Nexthink Assessment](#reflection-to-the-nexthink-assessment)
+- [Reflection to this System Built](#reflection-to-this-system-built)
 - [Functionality](#functionality)
 - [Architecture](#architecture)
 - [Workflow](#workflow)
@@ -22,7 +22,7 @@ A real-time IT news aggregation and filtering pipeline for enterprise IT manager
 ## UI overview
 ![Dashboard screenshot](doc/UI.jpg)
 
-## Reflection to the Nexthink Assessment
+## Reflection to this System Built
 **`doc/reflection.md` contains my detailed refelection on the assessment.**
 
 ---
@@ -32,7 +32,7 @@ A real-time IT news aggregation and filtering pipeline for enterprise IT manager
 - **Aggregation** — continuously fetches from Reddit (`r/sysadmin`) and Ars Technica (`/security/`) on a configurable interval
 - **Filtering** — hybrid scoring pipeline: BM25 lexical + OpenAI semantic embeddings + freshness, with an LLM judge for borderline articles
 - **Ranking** — kept articles ranked by importance × recency
-- **API** — two REST endpoints for the Nexthink mock newsfeed contract (`/ingest`, `/retrieve`)
+- **API** — two REST endpoints for the newsfeed contract (`/ingest`, `/retrieve`)
 - **Dashboard** — live web UI at `http://localhost:8000`
 
 ---

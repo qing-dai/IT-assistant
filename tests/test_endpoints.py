@@ -110,3 +110,56 @@ def test_retrieve_returns_200(client):
 def test_retrieve_returns_list(client):
     response = client.get("/retrieve")
     assert isinstance(response.json(), list)
+
+
+def test_retrieve_item_shape(client):
+    """Each item in /retrieve must have the required contract fields with correct types."""
+    mock_service = MagicMock()
+    mock_service.process_articles.return_value = []
+
+    fake_item = {
+        "id": "test-shape-001",
+        "source": "reddit",
+        "title": "Critical zero-day exploited in the wild",
+        "body": "Details about the vulnerability.",
+        "published_at": "2026-03-29T10:00:00Z",
+    }
+
+    with patch("services.retrieve_service.get_filtered_items", return_value=[fake_item]):
+        response = client.get("/retrieve")
+
+    assert response.status_code == 200
+    items = response.json()
+    assert isinstance(items, list)
+    assert len(items) == 1
+
+    item = items[0]
+    assert isinstance(item["id"], str)
+    assert isinstance(item["source"], str)
+    assert isinstance(item["title"], str)
+    # body is optional — if present must be str or null
+    assert "body" in item
+    assert item["body"] is None or isinstance(item["body"], str)
+    assert isinstance(item["published_at"], str)
+
+
+def test_retrieve_item_has_no_extra_scoring_fields(client):
+    """The /retrieve contract must not leak internal scoring fields."""
+    fake_item = {
+        "id": "test-shape-002",
+        "source": "ars-technica",
+        "title": "Security advisory issued",
+        "body": None,
+        "published_at": "2026-03-29T08:00:00Z",
+    }
+
+    with patch("services.retrieve_service.get_filtered_items", return_value=[fake_item]):
+        response = client.get("/retrieve")
+
+    item = response.json()[0]
+    internal_fields = {"keep", "fused_score", "rank_score", "lexical_score",
+                       "semantic_score", "freshness_score", "decision_source",
+                       "llm_reason", "llm_relevance_score", "predicted_category"}
+    assert not internal_fields.intersection(item.keys()), (
+        f"Internal fields leaked into /retrieve response: {internal_fields.intersection(item.keys())}"
+    )
