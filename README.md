@@ -23,7 +23,7 @@ A real-time IT news aggregation and filtering pipeline for enterprise IT manager
 ![Dashboard screenshot](doc/UI.jpg)
 
 ## Reflection to this System Built
-**`doc/reflection.md` contains my detailed refelection on the assessment.**
+**`doc/reflection.md` contains my detailed refelection on the overal design of this IT-assistant system.**
 
 ---
 
